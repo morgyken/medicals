@@ -7,3 +7,5 @@ Homestead.yaml
 .env
 composer.lock
 /nbproject
+/public/modules
+/public/themes
