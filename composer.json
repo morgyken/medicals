@@ -14,14 +14,17 @@
         "laracasts/flash": "^2.0",
         "floatingpoint/stylist": "^0.4.0",
         "maatwebsite/laravel-sidebar": "^2.1",
-        "cartalyst/sentinel": "2.0.*"
+        "cartalyst/sentinel": "2.0.*",
+        "asgardcms/flatly-theme": "^1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5.0",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/dom-crawler": "3.1.*",
+        "barryvdh/laravel-ide-helper": "^2.2",
+        "doctrine/dbal": "^2.5"
     },
     "autoload": {
         "classmap": [
@@ -29,7 +32,7 @@
         ],
         "psr-4": {
             "Dervis\\": "app/",
-            "Modules\\": "Modules/"
+            "Ignite\\": "Modules/"
         }
     },
     "autoload-dev": {

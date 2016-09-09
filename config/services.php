@@ -27,7 +27,7 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
     'stripe' => [
-        'model' => Dervis\User::class,
+        'model' => \Ignite\Users\Entities\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

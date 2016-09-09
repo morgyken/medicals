@@ -62,7 +62,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Dervis\User::class,
+            'model' => \Ignite\Users\Entities\User::class,
         ],
     // 'users' => [
     //     'driver' => 'database',
