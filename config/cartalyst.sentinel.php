@@ -47,8 +47,8 @@ return [
       |
      */
     'users' => [
-'model'=>\Ignite\Users\Entities\Sentinel::class
-       // 'model' => 'Cartalyst\Sentinel\Users\EloquentUser',
+        'model' => \Ignite\Users\Entities\Sentinel::class
+    // 'model' => 'Cartalyst\Sentinel\Users\EloquentUser',
     ],
     /*
       |--------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.6 on 2016-09-09.
+ * Generated for Laravel 5.3.6 on 2016-09-11.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -9,6 +9,894 @@
 
 namespace {
     exit("This file should not be included, only analyzed by your IDE");
+
+
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Debug\Dumper;
+use Illuminate\Contracts\Support\Htmlable;
+
+if (! function_exists('append_config')) {
+    /**
+     * Assign high numeric IDs to a config item to force appending.
+     *
+     * @param  array  $array
+     * @return array
+     */
+    function append_config(array $array)
+    {
+        $start = 9999;
+
+        foreach ($array as $key => $value) {
+            if (is_numeric($key)) {
+                $start++;
+
+                $array[$start] = Arr::pull($array, $key);
+            }
+        }
+
+        return $array;
+    }
+}
+
+if (! function_exists('array_add')) {
+    /**
+     * Add an element to an array using "dot" notation if it doesn't exist.
+     *
+     * @param  array   $array
+     * @param  string  $key
+     * @param  mixed   $value
+     * @return array
+     */
+    function array_add($array, $key, $value)
+    {
+        return Arr::add($array, $key, $value);
+    }
+}
+
+if (! function_exists('array_collapse')) {
+    /**
+     * Collapse an array of arrays into a single array.
+     *
+     * @param  array  $array
+     * @return array
+     */
+    function array_collapse($array)
+    {
+        return Arr::collapse($array);
+    }
+}
+
+if (! function_exists('array_divide')) {
+    /**
+     * Divide an array into two arrays. One with keys and the other with values.
+     *
+     * @param  array  $array
+     * @return array
+     */
+    function array_divide($array)
+    {
+        return Arr::divide($array);
+    }
+}
+
+if (! function_exists('array_dot')) {
+    /**
+     * Flatten a multi-dimensional associative array with dots.
+     *
+     * @param  array   $array
+     * @param  string  $prepend
+     * @return array
+     */
+    function array_dot($array, $prepend = '')
+    {
+        return Arr::dot($array, $prepend);
+    }
+}
+
+if (! function_exists('array_except')) {
+    /**
+     * Get all of the given array except for a specified array of items.
+     *
+     * @param  array  $array
+     * @param  array|string  $keys
+     * @return array
+     */
+    function array_except($array, $keys)
+    {
+        return Arr::except($array, $keys);
+    }
+}
+
+if (! function_exists('array_first')) {
+    /**
+     * Return the first element in an array passing a given truth test.
+     *
+     * @param  array  $array
+     * @param  callable|null  $callback
+     * @param  mixed  $default
+     * @return mixed
+     */
+    function array_first($array, callable $callback = null, $default = null)
+    {
+        return Arr::first($array, $callback, $default);
+    }
+}
+
+if (! function_exists('array_flatten')) {
+    /**
+     * Flatten a multi-dimensional array into a single level.
+     *
+     * @param  array  $array
+     * @param  int  $depth
+     * @return array
+     */
+    function array_flatten($array, $depth = INF)
+    {
+        return Arr::flatten($array, $depth);
+    }
+}
+
+if (! function_exists('array_forget')) {
+    /**
+     * Remove one or many array items from a given array using "dot" notation.
+     *
+     * @param  array  $array
+     * @param  array|string  $keys
+     * @return void
+     */
+    function array_forget(&$array, $keys)
+    {
+        return Arr::forget($array, $keys);
+    }
+}
+
+if (! function_exists('array_get')) {
+    /**
+     * Get an item from an array using "dot" notation.
+     *
+     * @param  \ArrayAccess|array  $array
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function array_get($array, $key, $default = null)
+    {
+        return Arr::get($array, $key, $default);
+    }
+}
+
+if (! function_exists('array_has')) {
+    /**
+     * Check if an item exists in an array using "dot" notation.
+     *
+     * @param  \ArrayAccess|array  $array
+     * @param  string  $key
+     * @return bool
+     */
+    function array_has($array, $key)
+    {
+        return Arr::has($array, $key);
+    }
+}
+
+if (! function_exists('array_last')) {
+    /**
+     * Return the last element in an array passing a given truth test.
+     *
+     * @param  array  $array
+     * @param  callable|null  $callback
+     * @param  mixed  $default
+     * @return mixed
+     */
+    function array_last($array, callable $callback = null, $default = null)
+    {
+        return Arr::last($array, $callback, $default);
+    }
+}
+
+if (! function_exists('array_only')) {
+    /**
+     * Get a subset of the items from the given array.
+     *
+     * @param  array  $array
+     * @param  array|string  $keys
+     * @return array
+     */
+    function array_only($array, $keys)
+    {
+        return Arr::only($array, $keys);
+    }
+}
+
+if (! function_exists('array_pluck')) {
+    /**
+     * Pluck an array of values from an array.
+     *
+     * @param  array   $array
+     * @param  string|array  $value
+     * @param  string|array|null  $key
+     * @return array
+     */
+    function array_pluck($array, $value, $key = null)
+    {
+        return Arr::pluck($array, $value, $key);
+    }
+}
+
+if (! function_exists('array_prepend')) {
+    /**
+     * Push an item onto the beginning of an array.
+     *
+     * @param  array  $array
+     * @param  mixed  $value
+     * @param  mixed  $key
+     * @return array
+     */
+    function array_prepend($array, $value, $key = null)
+    {
+        return Arr::prepend($array, $value, $key);
+    }
+}
+
+if (! function_exists('array_pull')) {
+    /**
+     * Get a value from the array, and remove it.
+     *
+     * @param  array   $array
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function array_pull(&$array, $key, $default = null)
+    {
+        return Arr::pull($array, $key, $default);
+    }
+}
+
+if (! function_exists('array_set')) {
+    /**
+     * Set an array item to a given value using "dot" notation.
+     *
+     * If no key is given to the method, the entire array will be replaced.
+     *
+     * @param  array   $array
+     * @param  string  $key
+     * @param  mixed   $value
+     * @return array
+     */
+    function array_set(&$array, $key, $value)
+    {
+        return Arr::set($array, $key, $value);
+    }
+}
+
+if (! function_exists('array_sort')) {
+    /**
+     * Sort the array using the given callback.
+     *
+     * @param  array  $array
+     * @param  callable  $callback
+     * @return array
+     */
+    function array_sort($array, callable $callback)
+    {
+        return Arr::sort($array, $callback);
+    }
+}
+
+if (! function_exists('array_sort_recursive')) {
+    /**
+     * Recursively sort an array by keys and values.
+     *
+     * @param  array  $array
+     * @return array
+     */
+    function array_sort_recursive($array)
+    {
+        return Arr::sortRecursive($array);
+    }
+}
+
+if (! function_exists('array_where')) {
+    /**
+     * Filter the array using the given callback.
+     *
+     * @param  array  $array
+     * @param  callable  $callback
+     * @return array
+     */
+    function array_where($array, callable $callback)
+    {
+        return Arr::where($array, $callback);
+    }
+}
+
+if (! function_exists('camel_case')) {
+    /**
+     * Convert a value to camel case.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    function camel_case($value)
+    {
+        return Str::camel($value);
+    }
+}
+
+if (! function_exists('class_basename')) {
+    /**
+     * Get the class "basename" of the given object / class.
+     *
+     * @param  string|object  $class
+     * @return string
+     */
+    function class_basename($class)
+    {
+        $class = is_object($class) ? get_class($class) : $class;
+
+        return basename(str_replace('\\', '/', $class));
+    }
+}
+
+if (! function_exists('class_uses_recursive')) {
+    /**
+     * Returns all traits used by a class, its subclasses and trait of their traits.
+     *
+     * @param  string  $class
+     * @return array
+     */
+    function class_uses_recursive($class)
+    {
+        $results = [];
+
+        foreach (array_merge([$class => $class], class_parents($class)) as $class) {
+            $results += trait_uses_recursive($class);
+        }
+
+        return array_unique($results);
+    }
+}
+
+if (! function_exists('collect')) {
+    /**
+     * Create a collection from the given value.
+     *
+     * @param  mixed  $value
+     * @return \Illuminate\Support\Collection
+     */
+    function collect($value = null)
+    {
+        return new Collection($value);
+    }
+}
+
+if (! function_exists('data_fill')) {
+    /**
+     * Fill in data where it's missing.
+     *
+     * @param  mixed   $target
+     * @param  string|array  $key
+     * @param  mixed  $value
+     * @return mixed
+     */
+    function data_fill(&$target, $key, $value)
+    {
+        return data_set($target, $key, $value, false);
+    }
+}
+
+if (! function_exists('data_get')) {
+    /**
+     * Get an item from an array or object using "dot" notation.
+     *
+     * @param  mixed   $target
+     * @param  string|array  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function data_get($target, $key, $default = null)
+    {
+        if (is_null($key)) {
+            return $target;
+        }
+
+        $key = is_array($key) ? $key : explode('.', $key);
+
+        while (($segment = array_shift($key)) !== null) {
+            if ($segment === '*') {
+                if ($target instanceof Collection) {
+                    $target = $target->all();
+                } elseif (! is_array($target)) {
+                    return value($default);
+                }
+
+                $result = Arr::pluck($target, $key);
+
+                return in_array('*', $key) ? Arr::collapse($result) : $result;
+            }
+
+            if (Arr::accessible($target) && Arr::exists($target, $segment)) {
+                $target = $target[$segment];
+            } elseif (is_object($target) && isset($target->{$segment})) {
+                $target = $target->{$segment};
+            } else {
+                return value($default);
+            }
+        }
+
+        return $target;
+    }
+}
+
+if (! function_exists('data_set')) {
+    /**
+     * Set an item on an array or object using dot notation.
+     *
+     * @param  mixed  $target
+     * @param  string|array  $key
+     * @param  mixed  $value
+     * @param  bool  $overwrite
+     * @return mixed
+     */
+    function data_set(&$target, $key, $value, $overwrite = true)
+    {
+        $segments = is_array($key) ? $key : explode('.', $key);
+
+        if (($segment = array_shift($segments)) === '*') {
+            if (! Arr::accessible($target)) {
+                $target = [];
+            }
+
+            if ($segments) {
+                foreach ($target as &$inner) {
+                    data_set($inner, $segments, $value, $overwrite);
+                }
+            } elseif ($overwrite) {
+                foreach ($target as &$inner) {
+                    $inner = $value;
+                }
+            }
+        } elseif (Arr::accessible($target)) {
+            if ($segments) {
+                if (! Arr::exists($target, $segment)) {
+                    $target[$segment] = [];
+                }
+
+                data_set($target[$segment], $segments, $value, $overwrite);
+            } elseif ($overwrite || ! Arr::exists($target, $segment)) {
+                $target[$segment] = $value;
+            }
+        } elseif (is_object($target)) {
+            if ($segments) {
+                if (! isset($target->{$segment})) {
+                    $target->{$segment} = [];
+                }
+
+                data_set($target->{$segment}, $segments, $value, $overwrite);
+            } elseif ($overwrite || ! isset($target->{$segment})) {
+                $target->{$segment} = $value;
+            }
+        } else {
+            $target = [];
+
+            if ($segments) {
+                data_set($target[$segment], $segments, $value, $overwrite);
+            } elseif ($overwrite) {
+                $target[$segment] = $value;
+            }
+        }
+
+        return $target;
+    }
+}
+
+if (! function_exists('dd')) {
+    /**
+     * Dump the passed variables and end the script.
+     *
+     * @param  mixed
+     * @return void
+     */
+    function dd()
+    {
+        array_map(function ($x) {
+            (new Dumper)->dump($x);
+        }, func_get_args());
+
+        die(1);
+    }
+}
+
+if (! function_exists('e')) {
+    /**
+     * Escape HTML special characters in a string.
+     *
+     * @param  \Illuminate\Contracts\Support\Htmlable|string  $value
+     * @return string
+     */
+    function e($value)
+    {
+        if ($value instanceof Htmlable) {
+            return $value->toHtml();
+        }
+
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false);
+    }
+}
+
+if (! function_exists('ends_with')) {
+    /**
+     * Determine if a given string ends with a given substring.
+     *
+     * @param  string  $haystack
+     * @param  string|array  $needles
+     * @return bool
+     */
+    function ends_with($haystack, $needles)
+    {
+        return Str::endsWith($haystack, $needles);
+    }
+}
+
+if (! function_exists('head')) {
+    /**
+     * Get the first element of an array. Useful for method chaining.
+     *
+     * @param  array  $array
+     * @return mixed
+     */
+    function head($array)
+    {
+        return reset($array);
+    }
+}
+
+if (! function_exists('last')) {
+    /**
+     * Get the last element from an array.
+     *
+     * @param  array  $array
+     * @return mixed
+     */
+    function last($array)
+    {
+        return end($array);
+    }
+}
+
+if (! function_exists('object_get')) {
+    /**
+     * Get an item from an object using "dot" notation.
+     *
+     * @param  object  $object
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function object_get($object, $key, $default = null)
+    {
+        if (is_null($key) || trim($key) == '') {
+            return $object;
+        }
+
+        foreach (explode('.', $key) as $segment) {
+            if (! is_object($object) || ! isset($object->{$segment})) {
+                return value($default);
+            }
+
+            $object = $object->{$segment};
+        }
+
+        return $object;
+    }
+}
+
+if (! function_exists('preg_replace_array')) {
+    /**
+     * Replace a given pattern with each value in the array in sequentially.
+     *
+     * @param  string  $pattern
+     * @param  array   $replacements
+     * @param  string  $subject
+     * @return string
+     */
+    function preg_replace_array($pattern, array $replacements, $subject)
+    {
+        return preg_replace_callback($pattern, function ($match) use (&$replacements) {
+            foreach ($replacements as $key => $value) {
+                return array_shift($replacements);
+            }
+        }, $subject);
+    }
+}
+
+if (! function_exists('snake_case')) {
+    /**
+     * Convert a string to snake case.
+     *
+     * @param  string  $value
+     * @param  string  $delimiter
+     * @return string
+     */
+    function snake_case($value, $delimiter = '_')
+    {
+        return Str::snake($value, $delimiter);
+    }
+}
+
+if (! function_exists('starts_with')) {
+    /**
+     * Determine if a given string starts with a given substring.
+     *
+     * @param  string  $haystack
+     * @param  string|array  $needles
+     * @return bool
+     */
+    function starts_with($haystack, $needles)
+    {
+        return Str::startsWith($haystack, $needles);
+    }
+}
+
+if (! function_exists('str_contains')) {
+    /**
+     * Determine if a given string contains a given substring.
+     *
+     * @param  string  $haystack
+     * @param  string|array  $needles
+     * @return bool
+     */
+    function str_contains($haystack, $needles)
+    {
+        return Str::contains($haystack, $needles);
+    }
+}
+
+if (! function_exists('str_finish')) {
+    /**
+     * Cap a string with a single instance of a given value.
+     *
+     * @param  string  $value
+     * @param  string  $cap
+     * @return string
+     */
+    function str_finish($value, $cap)
+    {
+        return Str::finish($value, $cap);
+    }
+}
+
+if (! function_exists('str_is')) {
+    /**
+     * Determine if a given string matches a given pattern.
+     *
+     * @param  string  $pattern
+     * @param  string  $value
+     * @return bool
+     */
+    function str_is($pattern, $value)
+    {
+        return Str::is($pattern, $value);
+    }
+}
+
+if (! function_exists('str_limit')) {
+    /**
+     * Limit the number of characters in a string.
+     *
+     * @param  string  $value
+     * @param  int     $limit
+     * @param  string  $end
+     * @return string
+     */
+    function str_limit($value, $limit = 100, $end = '...')
+    {
+        return Str::limit($value, $limit, $end);
+    }
+}
+
+if (! function_exists('str_plural')) {
+    /**
+     * Get the plural form of an English word.
+     *
+     * @param  string  $value
+     * @param  int     $count
+     * @return string
+     */
+    function str_plural($value, $count = 2)
+    {
+        return Str::plural($value, $count);
+    }
+}
+
+if (! function_exists('str_random')) {
+    /**
+     * Generate a more truly "random" alpha-numeric string.
+     *
+     * @param  int  $length
+     * @return string
+     *
+     * @throws \RuntimeException
+     */
+    function str_random($length = 16)
+    {
+        return Str::random($length);
+    }
+}
+
+if (! function_exists('str_replace_array')) {
+    /**
+     * Replace a given value in the string sequentially with an array.
+     *
+     * @param  string  $search
+     * @param  array   $replace
+     * @param  string  $subject
+     * @return string
+     */
+    function str_replace_array($search, array $replace, $subject)
+    {
+        return Str::replaceArray($search, $replace, $subject);
+    }
+}
+
+if (! function_exists('str_replace_first')) {
+    /**
+     * Replace the first occurrence of a given value in the string.
+     *
+     * @param  string  $search
+     * @param  string  $replace
+     * @param  string  $subject
+     * @return string
+     */
+    function str_replace_first($search, $replace, $subject)
+    {
+        return Str::replaceFirst($search, $replace, $subject);
+    }
+}
+
+if (! function_exists('str_replace_last')) {
+    /**
+     * Replace the last occurrence of a given value in the string.
+     *
+     * @param  string  $search
+     * @param  string  $replace
+     * @param  string  $subject
+     * @return string
+     */
+    function str_replace_last($search, $replace, $subject)
+    {
+        return Str::replaceLast($search, $replace, $subject);
+    }
+}
+
+if (! function_exists('str_singular')) {
+    /**
+     * Get the singular form of an English word.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    function str_singular($value)
+    {
+        return Str::singular($value);
+    }
+}
+
+if (! function_exists('str_slug')) {
+    /**
+     * Generate a URL friendly "slug" from a given string.
+     *
+     * @param  string  $title
+     * @param  string  $separator
+     * @return string
+     */
+    function str_slug($title, $separator = '-')
+    {
+        return Str::slug($title, $separator);
+    }
+}
+
+if (! function_exists('studly_case')) {
+    /**
+     * Convert a value to studly caps case.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    function studly_case($value)
+    {
+        return Str::studly($value);
+    }
+}
+
+if (! function_exists('tap')) {
+    /**
+     * Call the given Closure with the given value then return the value.
+     *
+     * @param  mixed  $value
+     * @param  callable  $callback
+     * @return mixed
+     */
+    function tap($value, $callback)
+    {
+        $callback($value);
+
+        return $value;
+    }
+}
+
+if (! function_exists('title_case')) {
+    /**
+     * Convert a value to title case.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    function title_case($value)
+    {
+        return Str::title($value);
+    }
+}
+
+if (! function_exists('trait_uses_recursive')) {
+    /**
+     * Returns all traits used by a trait and its traits.
+     *
+     * @param  string  $trait
+     * @return array
+     */
+    function trait_uses_recursive($trait)
+    {
+        $traits = class_uses($trait);
+
+        foreach ($traits as $trait) {
+            $traits += trait_uses_recursive($trait);
+        }
+
+        return $traits;
+    }
+}
+
+if (! function_exists('value')) {
+    /**
+     * Return the default value of the given value.
+     *
+     * @param  mixed  $value
+     * @return mixed
+     */
+    function value($value)
+    {
+        return $value instanceof Closure ? $value() : $value;
+    }
+}
+
+if (! function_exists('windows_os')) {
+    /**
+     * Determine whether the current environment is Windows based.
+     *
+     * @return bool
+     */
+    function windows_os()
+    {
+        return strtolower(substr(PHP_OS, 0, 3)) === 'win';
+    }
+}
+
+if (! function_exists('with')) {
+    /**
+     * Return the given object. Useful for chaining.
+     *
+     * @param  mixed  $object
+     * @return mixed
+     */
+    function with($object)
+    {
+        return $object;
+    }
+}
 
     class App extends \Illuminate\Support\Facades\App{
         
@@ -1362,7 +2250,7 @@ namespace {
         /**
          * Get the currently authenticated user.
          *
-         * @return \Modules\Users\Entities\User|null 
+         * @return \Ignite\Users\Entities\User|null 
          * @static 
          */
         public static function user(){
@@ -1466,7 +2354,7 @@ namespace {
          *
          * @param mixed $id
          * @param bool $remember
-         * @return \Modules\Users\Entities\User|false 
+         * @return \Ignite\Users\Entities\User|false 
          * @static 
          */
         public static function loginUsingId($id, $remember = false){
@@ -1477,7 +2365,7 @@ namespace {
          * Log the given user ID into the application without sessions or cookies.
          *
          * @param mixed $id
-         * @return \Modules\Users\Entities\User|false 
+         * @return \Ignite\Users\Entities\User|false 
          * @static 
          */
         public static function onceUsingId($id){
@@ -1571,7 +2459,7 @@ namespace {
         /**
          * Return the currently cached user.
          *
-         * @return \Modules\Users\Entities\User|null 
+         * @return \Ignite\Users\Entities\User|null 
          * @static 
          */
         public static function getUser(){
@@ -1613,7 +2501,7 @@ namespace {
         /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \Modules\Users\Entities\User 
+         * @return \Ignite\Users\Entities\User 
          * @static 
          */
         public static function getLastAttempted(){
@@ -1653,7 +2541,7 @@ namespace {
         /**
          * Determine if the current user is authenticated.
          *
-         * @return \Modules\Users\Entities\User 
+         * @return \Ignite\Users\Entities\User 
          * @throws \Illuminate\Auth\AuthenticationException
          * @static 
          */
@@ -12126,6 +13014,482 @@ namespace {
     }
 
 
+    class Debugbar extends \Barryvdh\Debugbar\Facade{
+        
+        /**
+         * Enable the Debugbar and boot, if not already booted.
+         *
+         * @static 
+         */
+        public static function enable(){
+            return \Barryvdh\Debugbar\LaravelDebugbar::enable();
+        }
+        
+        /**
+         * Boot the debugbar (add collectors, renderer and listener)
+         *
+         * @static 
+         */
+        public static function boot(){
+            return \Barryvdh\Debugbar\LaravelDebugbar::boot();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function shouldCollect($name, $default = false){
+            return \Barryvdh\Debugbar\LaravelDebugbar::shouldCollect($name, $default);
+        }
+        
+        /**
+         * Starts a measure
+         *
+         * @param string $name Internal name, used to stop the measure
+         * @param string $label Public name
+         * @static 
+         */
+        public static function startMeasure($name, $label = null){
+            return \Barryvdh\Debugbar\LaravelDebugbar::startMeasure($name, $label);
+        }
+        
+        /**
+         * Stops a measure
+         *
+         * @param string $name
+         * @static 
+         */
+        public static function stopMeasure($name){
+            return \Barryvdh\Debugbar\LaravelDebugbar::stopMeasure($name);
+        }
+        
+        /**
+         * Adds an exception to be profiled in the debug bar
+         *
+         * @param \Exception $e
+         * @static 
+         */
+        public static function addException($e){
+            return \Barryvdh\Debugbar\LaravelDebugbar::addException($e);
+        }
+        
+        /**
+         * Returns a JavascriptRenderer for this instance
+         *
+         * @param string $baseUrl
+         * @param string $basePathng
+         * @return \Barryvdh\Debugbar\JavascriptRenderer 
+         * @static 
+         */
+        public static function getJavascriptRenderer($baseUrl = null, $basePath = null){
+            return \Barryvdh\Debugbar\LaravelDebugbar::getJavascriptRenderer($baseUrl, $basePath);
+        }
+        
+        /**
+         * Modify the response and inject the debugbar (or data in headers)
+         *
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         * @param \Symfony\Component\HttpFoundation\Response $response
+         * @return \Symfony\Component\HttpFoundation\Response 
+         * @static 
+         */
+        public static function modifyResponse($request, $response){
+            return \Barryvdh\Debugbar\LaravelDebugbar::modifyResponse($request, $response);
+        }
+        
+        /**
+         * Check if the Debugbar is enabled
+         *
+         * @return boolean 
+         * @static 
+         */
+        public static function isEnabled(){
+            return \Barryvdh\Debugbar\LaravelDebugbar::isEnabled();
+        }
+        
+        /**
+         * Collects the data from the collectors
+         *
+         * @return array 
+         * @static 
+         */
+        public static function collect(){
+            return \Barryvdh\Debugbar\LaravelDebugbar::collect();
+        }
+        
+        /**
+         * Injects the web debug toolbar into the given Response.
+         *
+         * @param \Symfony\Component\HttpFoundation\Response $response A Response instance
+         * Based on https://github.com/symfony/WebProfilerBundle/blob/master/EventListener/WebDebugToolbarListener.php
+         * @static 
+         */
+        public static function injectDebugbar($response){
+            return \Barryvdh\Debugbar\LaravelDebugbar::injectDebugbar($response);
+        }
+        
+        /**
+         * Disable the Debugbar
+         *
+         * @static 
+         */
+        public static function disable(){
+            return \Barryvdh\Debugbar\LaravelDebugbar::disable();
+        }
+        
+        /**
+         * Adds a measure
+         *
+         * @param string $label
+         * @param float $start
+         * @param float $end
+         * @static 
+         */
+        public static function addMeasure($label, $start, $end){
+            return \Barryvdh\Debugbar\LaravelDebugbar::addMeasure($label, $start, $end);
+        }
+        
+        /**
+         * Utility function to measure the execution of a Closure
+         *
+         * @param string $label
+         * @param \Closure $closure
+         * @static 
+         */
+        public static function measure($label, $closure){
+            return \Barryvdh\Debugbar\LaravelDebugbar::measure($label, $closure);
+        }
+        
+        /**
+         * Collect data in a CLI request
+         *
+         * @return array 
+         * @static 
+         */
+        public static function collectConsole(){
+            return \Barryvdh\Debugbar\LaravelDebugbar::collectConsole();
+        }
+        
+        /**
+         * Adds a message to the MessagesCollector
+         * 
+         * A message can be anything from an object to a string
+         *
+         * @param mixed $message
+         * @param string $label
+         * @static 
+         */
+        public static function addMessage($message, $label = 'info'){
+            return \Barryvdh\Debugbar\LaravelDebugbar::addMessage($message, $label);
+        }
+        
+        /**
+         * Adds a data collector
+         *
+         * @param \DebugBar\DataCollectorInterface $collector
+         * @throws DebugBarException
+         * @return $this 
+         * @static 
+         */
+        public static function addCollector($collector){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::addCollector($collector);
+        }
+        
+        /**
+         * Checks if a data collector has been added
+         *
+         * @param string $name
+         * @return boolean 
+         * @static 
+         */
+        public static function hasCollector($name){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::hasCollector($name);
+        }
+        
+        /**
+         * Returns a data collector
+         *
+         * @param string $name
+         * @return \DebugBar\DataCollectorInterface 
+         * @throws DebugBarException
+         * @static 
+         */
+        public static function getCollector($name){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getCollector($name);
+        }
+        
+        /**
+         * Returns an array of all data collectors
+         *
+         * @return \DebugBar\array[DataCollectorInterface] 
+         * @static 
+         */
+        public static function getCollectors(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getCollectors();
+        }
+        
+        /**
+         * Sets the request id generator
+         *
+         * @param \DebugBar\RequestIdGeneratorInterface $generator
+         * @return $this 
+         * @static 
+         */
+        public static function setRequestIdGenerator($generator){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setRequestIdGenerator($generator);
+        }
+        
+        /**
+         * 
+         *
+         * @return \DebugBar\RequestIdGeneratorInterface 
+         * @static 
+         */
+        public static function getRequestIdGenerator(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getRequestIdGenerator();
+        }
+        
+        /**
+         * Returns the id of the current request
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getCurrentRequestId(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getCurrentRequestId();
+        }
+        
+        /**
+         * Sets the storage backend to use to store the collected data
+         *
+         * @param \DebugBar\StorageInterface $storage
+         * @return $this 
+         * @static 
+         */
+        public static function setStorage($storage = null){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setStorage($storage);
+        }
+        
+        /**
+         * 
+         *
+         * @return \DebugBar\StorageInterface 
+         * @static 
+         */
+        public static function getStorage(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getStorage();
+        }
+        
+        /**
+         * Checks if the data will be persisted
+         *
+         * @return boolean 
+         * @static 
+         */
+        public static function isDataPersisted(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::isDataPersisted();
+        }
+        
+        /**
+         * Sets the HTTP driver
+         *
+         * @param \DebugBar\HttpDriverInterface $driver
+         * @return $this 
+         * @static 
+         */
+        public static function setHttpDriver($driver){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setHttpDriver($driver);
+        }
+        
+        /**
+         * Returns the HTTP driver
+         * 
+         * If no http driver where defined, a PhpHttpDriver is automatically created
+         *
+         * @return \DebugBar\HttpDriverInterface 
+         * @static 
+         */
+        public static function getHttpDriver(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getHttpDriver();
+        }
+        
+        /**
+         * Returns collected data
+         * 
+         * Will collect the data if none have been collected yet
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getData(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getData();
+        }
+        
+        /**
+         * Returns an array of HTTP headers containing the data
+         *
+         * @param string $headerName
+         * @param integer $maxHeaderLength
+         * @return array 
+         * @static 
+         */
+        public static function getDataAsHeaders($headerName = 'phpdebugbar', $maxHeaderLength = 4096, $maxTotalHeaderLength = 250000){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getDataAsHeaders($headerName, $maxHeaderLength, $maxTotalHeaderLength);
+        }
+        
+        /**
+         * Sends the data through the HTTP headers
+         *
+         * @param bool $useOpenHandler
+         * @param string $headerName
+         * @param integer $maxHeaderLength
+         * @return $this 
+         * @static 
+         */
+        public static function sendDataInHeaders($useOpenHandler = null, $headerName = 'phpdebugbar', $maxHeaderLength = 4096){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::sendDataInHeaders($useOpenHandler, $headerName, $maxHeaderLength);
+        }
+        
+        /**
+         * Stacks the data in the session for later rendering
+         *
+         * @static 
+         */
+        public static function stackData(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::stackData();
+        }
+        
+        /**
+         * Checks if there is stacked data in the session
+         *
+         * @return boolean 
+         * @static 
+         */
+        public static function hasStackedData(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::hasStackedData();
+        }
+        
+        /**
+         * Returns the data stacked in the session
+         *
+         * @param boolean $delete Whether to delete the data in the session
+         * @return array 
+         * @static 
+         */
+        public static function getStackedData($delete = true){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getStackedData($delete);
+        }
+        
+        /**
+         * Sets the key to use in the $_SESSION array
+         *
+         * @param string $ns
+         * @return $this 
+         * @static 
+         */
+        public static function setStackDataSessionNamespace($ns){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setStackDataSessionNamespace($ns);
+        }
+        
+        /**
+         * Returns the key used in the $_SESSION array
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getStackDataSessionNamespace(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getStackDataSessionNamespace();
+        }
+        
+        /**
+         * Sets whether to only use the session to store stacked data even
+         * if a storage is enabled
+         *
+         * @param boolean $enabled
+         * @return $this 
+         * @static 
+         */
+        public static function setStackAlwaysUseSessionStorage($enabled = true){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setStackAlwaysUseSessionStorage($enabled);
+        }
+        
+        /**
+         * Checks if the session is always used to store stacked data
+         * even if a storage is enabled
+         *
+         * @return boolean 
+         * @static 
+         */
+        public static function isStackAlwaysUseSessionStorage(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::isStackAlwaysUseSessionStorage();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function offsetSet($key, $value){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::offsetSet($key, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function offsetGet($key){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::offsetGet($key);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function offsetExists($key){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::offsetExists($key);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function offsetUnset($key){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::offsetUnset($key);
+        }
+        
+    }
+
+
     class Form extends \Collective\Html\FormFacade{
         
         /**
@@ -12979,6 +14343,704 @@ namespace {
          */
         public static function linkAsset($url, $title = null, $attributes = array(), $secure = null){
             return \FloatingPoint\Stylist\Html\ThemeHtmlBuilder::linkAsset($url, $title, $attributes, $secure);
+        }
+        
+    }
+
+
+    class Setting extends \Ignite\Settings\Facades\Settings{
+        
+        /**
+         * Getting the setting
+         *
+         * @param string $name
+         * @param string $locale
+         * @param string $default
+         * @return mixed 
+         * @static 
+         */
+        public static function get($name, $locale = null, $default = null){
+            return \Ignite\Settings\Library\Settings::get($name, $locale, $default);
+        }
+        
+        /**
+         * Determine if the given configuration value exists.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function has($name){
+            return \Ignite\Settings\Library\Settings::has($name);
+        }
+        
+        /**
+         * Set a given configuration value.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function set($key, $value){
+            \Ignite\Settings\Library\Settings::set($key, $value);
+        }
+        
+    }
+
+
+    class Sentinel extends \Cartalyst\Sentinel\Laravel\Facades\Sentinel{
+        
+        /**
+         * Registers a user. You may provide a callback to occur before the user
+         * is saved, or provide a true boolean as a shortcut to activation.
+         *
+         * @param array $credentials
+         * @param \Closure|bool $callback
+         * @return \Cartalyst\Sentinel\Users\UserInteface|bool 
+         * @throws \InvalidArgumentException
+         * @static 
+         */
+        public static function register($credentials, $callback = null){
+            return \Cartalyst\Sentinel\Sentinel::register($credentials, $callback);
+        }
+        
+        /**
+         * Registers and activates the user.
+         *
+         * @param array $credentials
+         * @return \Cartalyst\Sentinel\Users\UserInteface|bool 
+         * @static 
+         */
+        public static function registerAndActivate($credentials){
+            return \Cartalyst\Sentinel\Sentinel::registerAndActivate($credentials);
+        }
+        
+        /**
+         * Activates the given user.
+         *
+         * @param mixed $user
+         * @return bool 
+         * @throws \InvalidArgumentException
+         * @static 
+         */
+        public static function activate($user){
+            return \Cartalyst\Sentinel\Sentinel::activate($user);
+        }
+        
+        /**
+         * Checks to see if a user is logged in.
+         *
+         * @return \Cartalyst\Sentinel\Users\UserInterface|bool 
+         * @static 
+         */
+        public static function check(){
+            return \Cartalyst\Sentinel\Sentinel::check();
+        }
+        
+        /**
+         * Checks to see if a user is logged in, bypassing checkpoints
+         *
+         * @return \Cartalyst\Sentinel\Users\UserInterface|bool 
+         * @static 
+         */
+        public static function forceCheck(){
+            return \Cartalyst\Sentinel\Sentinel::forceCheck();
+        }
+        
+        /**
+         * Checks if we are currently a guest.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function guest(){
+            return \Cartalyst\Sentinel\Sentinel::guest();
+        }
+        
+        /**
+         * Authenticates a user, with "remember" flag.
+         *
+         * @param \Cartalyst\Sentinel\Users\UserInterface|array $credentials
+         * @param bool $remember
+         * @param bool $login
+         * @return \Cartalyst\Sentinel\Users\UserInterface|bool 
+         * @static 
+         */
+        public static function authenticate($credentials, $remember = false, $login = true){
+            return \Cartalyst\Sentinel\Sentinel::authenticate($credentials, $remember, $login);
+        }
+        
+        /**
+         * Authenticates a user, with the "remember" flag.
+         *
+         * @param \Cartalyst\Sentinel\Users\UserInterface|array $credentials
+         * @return \Cartalyst\Sentinel\Users\UserInterface|bool 
+         * @static 
+         */
+        public static function authenticateAndRemember($credentials){
+            return \Cartalyst\Sentinel\Sentinel::authenticateAndRemember($credentials);
+        }
+        
+        /**
+         * Forces an authentication to bypass checkpoints.
+         *
+         * @param \Cartalyst\Sentinel\Users\UserInterface|array $credentials
+         * @param bool $remember
+         * @return \Cartalyst\Sentinel\Users\UserInterface|bool 
+         * @static 
+         */
+        public static function forceAuthenticate($credentials, $remember = false){
+            return \Cartalyst\Sentinel\Sentinel::forceAuthenticate($credentials, $remember);
+        }
+        
+        /**
+         * Forces an authentication to bypass checkpoints, with the "remember" flag.
+         *
+         * @param \Cartalyst\Sentinel\Users\UserInterface|array $credentials
+         * @return \Cartalyst\Sentinel\Users\UserInterface|bool 
+         * @static 
+         */
+        public static function forceAuthenticateAndRemember($credentials){
+            return \Cartalyst\Sentinel\Sentinel::forceAuthenticateAndRemember($credentials);
+        }
+        
+        /**
+         * Attempt a stateless authentication.
+         *
+         * @param \Cartalyst\Sentinel\Users\UserInterface|array $credentials
+         * @return \Cartalyst\Sentinel\Users\UserInterface|bool 
+         * @static 
+         */
+        public static function stateless($credentials){
+            return \Cartalyst\Sentinel\Sentinel::stateless($credentials);
+        }
+        
+        /**
+         * Attempt to authenticate using HTTP Basic Auth.
+         *
+         * @return mixed 
+         * @static 
+         */
+        public static function basic(){
+            return \Cartalyst\Sentinel\Sentinel::basic();
+        }
+        
+        /**
+         * Returns the request credentials.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getRequestCredentials(){
+            return \Cartalyst\Sentinel\Sentinel::getRequestCredentials();
+        }
+        
+        /**
+         * Sets the closure which resolves the request credentials.
+         *
+         * @param \Closure $requestCredentials
+         * @return void 
+         * @static 
+         */
+        public static function setRequestCredentials($requestCredentials){
+            \Cartalyst\Sentinel\Sentinel::setRequestCredentials($requestCredentials);
+        }
+        
+        /**
+         * Sends a response when HTTP basic authentication fails.
+         *
+         * @return mixed 
+         * @throws \RuntimeException
+         * @static 
+         */
+        public static function getBasicResponse(){
+            return \Cartalyst\Sentinel\Sentinel::getBasicResponse();
+        }
+        
+        /**
+         * Sets the callback which creates a basic response.
+         *
+         * @param \Closure $basicResonse
+         * @return void 
+         * @static 
+         */
+        public static function creatingBasicResponse($basicResponse){
+            \Cartalyst\Sentinel\Sentinel::creatingBasicResponse($basicResponse);
+        }
+        
+        /**
+         * Persists a login for the given user.
+         *
+         * @param \Cartalyst\Sentinel\Users\UserInterface $user
+         * @param bool $remember
+         * @return \Cartalyst\Sentinel\Users\UserInterface|bool 
+         * @static 
+         */
+        public static function login($user, $remember = false){
+            return \Cartalyst\Sentinel\Sentinel::login($user, $remember);
+        }
+        
+        /**
+         * Persists a login for the given user, with the "remember" flag.
+         *
+         * @param \Cartalyst\Sentinel\Users\UserInterface $user
+         * @return \Cartalyst\Sentinel\Users\UserInterface|bool 
+         * @static 
+         */
+        public static function loginAndRemember($user){
+            return \Cartalyst\Sentinel\Sentinel::loginAndRemember($user);
+        }
+        
+        /**
+         * Logs the current user out.
+         *
+         * @param \Cartalyst\Sentinel\Users\UserInterface $user
+         * @param bool $everywhere
+         * @return bool 
+         * @static 
+         */
+        public static function logout($user = null, $everywhere = false){
+            return \Cartalyst\Sentinel\Sentinel::logout($user, $everywhere);
+        }
+        
+        /**
+         * Pass a closure to Sentinel to bypass checkpoints.
+         *
+         * @param \Closure $callback
+         * @param array $checkpoints
+         * @return mixed 
+         * @static 
+         */
+        public static function bypassCheckpoints($callback, $checkpoints = array()){
+            return \Cartalyst\Sentinel\Sentinel::bypassCheckpoints($callback, $checkpoints);
+        }
+        
+        /**
+         * Checks if checkpoints are enabled.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function checkpointsStatus(){
+            return \Cartalyst\Sentinel\Sentinel::checkpointsStatus();
+        }
+        
+        /**
+         * Enables checkpoints.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function enableCheckpoints(){
+            \Cartalyst\Sentinel\Sentinel::enableCheckpoints();
+        }
+        
+        /**
+         * Disables checkpoints.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function disableCheckpoints(){
+            \Cartalyst\Sentinel\Sentinel::disableCheckpoints();
+        }
+        
+        /**
+         * Add a new checkpoint to Sentinel.
+         *
+         * @param string $key
+         * @param \Cartalyst\Sentinel\Checkpoints\CheckpointInterface $checkpoint
+         * @return void 
+         * @static 
+         */
+        public static function addCheckpoint($key, $checkpoint){
+            \Cartalyst\Sentinel\Sentinel::addCheckpoint($key, $checkpoint);
+        }
+        
+        /**
+         * Removes a checkpoint.
+         *
+         * @param string $key
+         * @return void 
+         * @static 
+         */
+        public static function removeCheckpoint($key){
+            \Cartalyst\Sentinel\Sentinel::removeCheckpoint($key);
+        }
+        
+        /**
+         * Returns the currently logged in user, lazily checking for it.
+         *
+         * @param bool $check
+         * @return \Cartalyst\Sentinel\Users\UserInterface 
+         * @static 
+         */
+        public static function getUser($check = true){
+            return \Cartalyst\Sentinel\Sentinel::getUser($check);
+        }
+        
+        /**
+         * Sets the user associated with Sentinel (does not log in).
+         *
+         * @param \Cartalyst\Sentinel\Users\UserInterface $user
+         * @return void 
+         * @static 
+         */
+        public static function setUser($user){
+            \Cartalyst\Sentinel\Sentinel::setUser($user);
+        }
+        
+        /**
+         * Returns the user repository.
+         *
+         * @return \Cartalyst\Sentinel\Users\UserRepositoryInterface 
+         * @static 
+         */
+        public static function getUserRepository(){
+            return \Cartalyst\Sentinel\Sentinel::getUserRepository();
+        }
+        
+        /**
+         * Sets the user repository.
+         *
+         * @param \Cartalyst\Sentinel\Users\UserRepositoryInterface $users
+         * @return void 
+         * @static 
+         */
+        public static function setUserRepository($users){
+            \Cartalyst\Sentinel\Sentinel::setUserRepository($users);
+        }
+        
+        /**
+         * Returns the role repository.
+         *
+         * @return \Cartalyst\Sentinel\Roles\RoleRepositoryInterface 
+         * @static 
+         */
+        public static function getRoleRepository(){
+            return \Cartalyst\Sentinel\Sentinel::getRoleRepository();
+        }
+        
+        /**
+         * Sets the role repository.
+         *
+         * @param \Cartalyst\Sentinel\Roles\RoleRepositoryInterface $roles
+         * @return void 
+         * @static 
+         */
+        public static function setRoleRepository($roles){
+            \Cartalyst\Sentinel\Sentinel::setRoleRepository($roles);
+        }
+        
+        /**
+         * Returns the persistences repository.
+         *
+         * @return \Cartalyst\Sentinel\Persistences\PersistenceRepositoryInterface 
+         * @static 
+         */
+        public static function getPersistenceRepository(){
+            return \Cartalyst\Sentinel\Sentinel::getPersistenceRepository();
+        }
+        
+        /**
+         * Sets the persistences repository.
+         *
+         * @param \Cartalyst\Sentinel\Persistences\PersistenceRepositoryInterface $persistences
+         * @return void 
+         * @static 
+         */
+        public static function setPersistenceRepository($persistences){
+            \Cartalyst\Sentinel\Sentinel::setPersistenceRepository($persistences);
+        }
+        
+        /**
+         * Returns the activations repository.
+         *
+         * @return \Cartalyst\Sentinel\Activations\ActivationRepositoryInterface 
+         * @static 
+         */
+        public static function getActivationRepository(){
+            return \Cartalyst\Sentinel\Sentinel::getActivationRepository();
+        }
+        
+        /**
+         * Sets the activations repository.
+         *
+         * @param \Cartalyst\Sentinel\Activations\ActivationRepositoryInterface $activations
+         * @return void 
+         * @static 
+         */
+        public static function setActivationRepository($activations){
+            \Cartalyst\Sentinel\Sentinel::setActivationRepository($activations);
+        }
+        
+        /**
+         * Returns the reminders repository.
+         *
+         * @return \Cartalyst\Sentinel\Reminders\ReminderRepositoryInterface 
+         * @static 
+         */
+        public static function getReminderRepository(){
+            return \Cartalyst\Sentinel\Sentinel::getReminderRepository();
+        }
+        
+        /**
+         * Sets the reminders repository.
+         *
+         * @param \Cartalyst\Sentinel\Reminders\ReminderRepositoryInterface $reminders
+         * @return void 
+         * @static 
+         */
+        public static function setReminderRepository($reminders){
+            \Cartalyst\Sentinel\Sentinel::setReminderRepository($reminders);
+        }
+        
+        /**
+         * Returns the throttle repository.
+         *
+         * @return \Cartalyst\Sentinel\Throttling\ThrottleRepositoryInterface 
+         * @static 
+         */
+        public static function getThrottleRepository(){
+            return \Cartalyst\Sentinel\Sentinel::getThrottleRepository();
+        }
+        
+        /**
+         * Sets the throttle repository.
+         *
+         * @param \Cartalyst\Sentinel\Throttling\ThrottleRepositoryInterface $throttle
+         * @return void 
+         * @static 
+         */
+        public static function setThrottleRepository($throttle){
+            \Cartalyst\Sentinel\Sentinel::setThrottleRepository($throttle);
+        }
+        
+        /**
+         * Returns the event dispatcher.
+         *
+         * @return \Illuminate\Events\Dispatcher 
+         * @static 
+         */
+        public static function getDispatcher(){
+            return \Cartalyst\Sentinel\Sentinel::getDispatcher();
+        }
+        
+        /**
+         * Sets the event dispatcher instance.
+         *
+         * @param \Illuminate\Events\Dispatcher $dispatcher
+         * @return $this 
+         * @static 
+         */
+        public static function setDispatcher($dispatcher){
+            return \Cartalyst\Sentinel\Sentinel::setDispatcher($dispatcher);
+        }
+        
+        /**
+         * Returns the event dispatcher status.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function getDispatcherStatus(){
+            return \Cartalyst\Sentinel\Sentinel::getDispatcherStatus();
+        }
+        
+        /**
+         * Sets the event dispatcher status.
+         *
+         * @param bool $status
+         * @return $this 
+         * @static 
+         */
+        public static function setDispatcherStatus($status){
+            return \Cartalyst\Sentinel\Sentinel::setDispatcherStatus($status);
+        }
+        
+        /**
+         * Enables the event dispatcher.
+         *
+         * @return $this 
+         * @static 
+         */
+        public static function enableDispatcher(){
+            return \Cartalyst\Sentinel\Sentinel::enableDispatcher();
+        }
+        
+        /**
+         * Disables the event dispatcher.
+         *
+         * @return $this 
+         * @static 
+         */
+        public static function disableDispatcher(){
+            return \Cartalyst\Sentinel\Sentinel::disableDispatcher();
+        }
+        
+    }
+
+
+    class Activation extends \Cartalyst\Sentinel\Laravel\Facades\Activation{
+        
+        /**
+         * {@inheritDoc}
+         *
+         * @static 
+         */
+        public static function create($user){
+            return \Cartalyst\Sentinel\Activations\IlluminateActivationRepository::create($user);
+        }
+        
+        /**
+         * {@inheritDoc}
+         *
+         * @static 
+         */
+        public static function exists($user, $code = null){
+            return \Cartalyst\Sentinel\Activations\IlluminateActivationRepository::exists($user, $code);
+        }
+        
+        /**
+         * {@inheritDoc}
+         *
+         * @static 
+         */
+        public static function complete($user, $code){
+            return \Cartalyst\Sentinel\Activations\IlluminateActivationRepository::complete($user, $code);
+        }
+        
+        /**
+         * {@inheritDoc}
+         *
+         * @static 
+         */
+        public static function completed($user){
+            return \Cartalyst\Sentinel\Activations\IlluminateActivationRepository::completed($user);
+        }
+        
+        /**
+         * {@inheritDoc}
+         *
+         * @static 
+         */
+        public static function remove($user){
+            return \Cartalyst\Sentinel\Activations\IlluminateActivationRepository::remove($user);
+        }
+        
+        /**
+         * {@inheritDoc}
+         *
+         * @static 
+         */
+        public static function removeExpired(){
+            return \Cartalyst\Sentinel\Activations\IlluminateActivationRepository::removeExpired();
+        }
+        
+        /**
+         * Create a new instance of the model.
+         *
+         * @param array $data
+         * @return mixed 
+         * @static 
+         */
+        public static function createModel($data = array()){
+            return \Cartalyst\Sentinel\Activations\IlluminateActivationRepository::createModel($data);
+        }
+        
+        /**
+         * Returns the model.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getModel(){
+            return \Cartalyst\Sentinel\Activations\IlluminateActivationRepository::getModel();
+        }
+        
+        /**
+         * Runtime override of the model.
+         *
+         * @param string $model
+         * @return $this 
+         * @static 
+         */
+        public static function setModel($model){
+            return \Cartalyst\Sentinel\Activations\IlluminateActivationRepository::setModel($model);
+        }
+        
+    }
+
+
+    class Reminder extends \Cartalyst\Sentinel\Laravel\Facades\Reminder{
+        
+        /**
+         * {@inheritDoc}
+         *
+         * @static 
+         */
+        public static function create($user){
+            return \Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::create($user);
+        }
+        
+        /**
+         * {@inheritDoc}
+         *
+         * @static 
+         */
+        public static function exists($user, $code = null){
+            return \Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::exists($user, $code);
+        }
+        
+        /**
+         * {@inheritDoc}
+         *
+         * @static 
+         */
+        public static function complete($user, $code, $password){
+            return \Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::complete($user, $code, $password);
+        }
+        
+        /**
+         * {@inheritDoc}
+         *
+         * @static 
+         */
+        public static function removeExpired(){
+            return \Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::removeExpired();
+        }
+        
+        /**
+         * Create a new instance of the model.
+         *
+         * @param array $data
+         * @return mixed 
+         * @static 
+         */
+        public static function createModel($data = array()){
+            return \Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::createModel($data);
+        }
+        
+        /**
+         * Returns the model.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getModel(){
+            return \Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::getModel();
+        }
+        
+        /**
+         * Runtime override of the model.
+         *
+         * @param string $model
+         * @return $this 
+         * @static 
+         */
+        public static function setModel($model){
+            return \Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::setModel($model);
         }
         
     }
