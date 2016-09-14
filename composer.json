@@ -25,7 +25,9 @@
         "symfony/dom-crawler": "3.1.*",
         "barryvdh/laravel-ide-helper": "^2.2",
         "doctrine/dbal": "^2.5",
-        "barryvdh/laravel-debugbar": "^2.2"
+        "barryvdh/laravel-debugbar": "^2.2",
+        "graham-campbell/exceptions": "^9.1",
+        "filp/whoops": "^2.1"
     },
     "autoload": {
         "classmap": [

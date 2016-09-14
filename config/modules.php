@@ -132,7 +132,7 @@ return [
       |
      */
     'composer' => [
-        'vendor' => 'nwidart',
+        'vendor' => 'samueldervis',
         'author' => [
             'name' => 'Samuel Dervis',
             'email' => 'samueldervis@gmail.com',

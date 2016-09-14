@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider {
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
             $loader->alias('Debugbar', \Barryvdh\Debugbar\Facade::class);
+            $this->app->register(\GrahamCampbell\Exceptions\ExceptionsServiceProvider::class);
         }
     }
 
