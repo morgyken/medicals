@@ -1,8 +1,16 @@
 {
-    "name": "collabmed/inventory",
+    "name": "collabmed/platform",
     "description": "The Collabmed Platform",
-    "keywords": ["inventory", "collabmed", "samuel", "dervis"],
-    "license": "MIT",
+    "keywords": ["inventory", "collabmed", "samuel", "dervis", "healthcare"],
+    "license": "proprietary",
+    "homepage": "http://www.collabmed.com",
+    "authors": [
+        {
+            "name": "Samuel Odhiambo Okoth",
+            "email": "sodhiambo@collabmed.com",
+            "role": "developer"
+        }
+    ],
     "type": "project",
     "require": {
         "php": ">=5.6.4",
@@ -17,7 +25,10 @@
         "cartalyst/sentinel": "2.0.*",
         "asgardcms/flatly-theme": "^1.2",
         "maddhatter/laravel-fullcalendar": "^1.2",
-        "jenssegers/date": "^3.2"
+        "jenssegers/date": "^3.2",
+        "collabmed/core": "dev-master",
+        "collabmed/users": "dev-master",
+        "collabmed/settings": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -54,14 +65,30 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "php artisan stylist:publish",
+            "php artisan module:publish",
             "php artisan optimize"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan stylist:publish",
+            "php artisan module:publish",
             "php artisan optimize"
         ]
     },
     "config": {
         "preferred-install": "dist"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://ignite.collabmed.net/"
+        }
+    ],
+    "extra": {
+        "installer-paths": {
+            "Modules/{$name}/": ["type:dervis-module"],
+            "Themes/{$name}/": ["type:dervis-theme"]
+        }
     }
 }
