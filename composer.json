@@ -78,19 +78,12 @@
     },
     "config": {
         "preferred-install": "dist",
-
-    "secure-http":false
+        "secure-http":false
     },
     "repositories": [
         {
             "type": "composer",
-            "url": "http://ignite.collabmed.net/repo/private/"
+            "url": "http://sapi.collabmed.net/repo/private/"
         }
-    ],
-    "extra": {
-        "installer-paths": {
-            "Modules/{$name}/": ["type:dervis-module"],
-            "Themes/{$name}/": ["type:dervis-theme"]
-        }
-    }
+    ]
 }
