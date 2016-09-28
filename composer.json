@@ -25,10 +25,7 @@
         "cartalyst/sentinel": "2.0.*",
         "asgardcms/flatly-theme": "^1.2",
         "maddhatter/laravel-fullcalendar": "^1.2",
-        "jenssegers/date": "^3.2",
-        "collabmed/core": "dev-master",
-        "collabmed/users": "dev-master",
-        "collabmed/settings": "dev-master"
+        "jenssegers/date": "^3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -40,7 +37,10 @@
         "doctrine/dbal": "^2.5",
         "barryvdh/laravel-debugbar": "^2.2",
         "graham-campbell/exceptions": "^9.1",
-        "filp/whoops": "^2.1"
+        "filp/whoops": "^2.1",
+        "orchestra/testbench": "~3.1",
+        "league/flysystem-aws-s3-v3": "~1.0",
+        "intervention/image": "^2.3"
     },
     "autoload": {
         "classmap": [
@@ -78,7 +78,7 @@
     },
     "config": {
         "preferred-install": "dist",
-        "secure-http":false
+        "secure-http": false
     },
     "repositories": [
         {
