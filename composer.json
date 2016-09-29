@@ -20,7 +20,8 @@
         "collabmed/adminlte-theme": "1.0.*",
         "collabmed/core-module": "1.0.*",
         "collabmed/users-module": "1.0.*",
-        "collabmed/settings-module": "1.0.*"
+        "collabmed/settings-module": "1.0.*",
+        "collabmed/evaluation-module": "1.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
