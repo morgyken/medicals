@@ -16,11 +16,11 @@
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
         "nwidart/laravel-modules": "^1.13",
-        "collabmed/flatly-theme": "~1.0",
-        "collabmed/adminlte-theme": "~1.0",
-        "collabmed/core-module": "~1.0",
-        "collabmed/users-module": "~1.0",
-        "collabmed/settings-module": "~1.0"
+        "collabmed/flatly-theme": "1.0.*",
+        "collabmed/adminlte-theme": "1.0.*",
+        "collabmed/core-module": "1.0.*",
+        "collabmed/users-module": "1.0.*",
+        "collabmed/settings-module": "1.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
