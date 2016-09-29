@@ -21,7 +21,12 @@
         "collabmed/core-module": "1.0.*",
         "collabmed/users-module": "1.0.*",
         "collabmed/settings-module": "1.0.*",
-        "collabmed/evaluation-module": "1.0.*"
+        "collabmed/reception-module": "1.0.*",
+        "collabmed/evaluation-module": "1.0.*",
+        "collabmed/finance-module": "1.0.*",
+        "collabmed/inventory-module": "1.0.*",
+        "collabmed/messaging-module": "1.0.*",
+        "collabmed/media-module": "1.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
