@@ -77,13 +77,12 @@
         ]
     },
     "config": {
-        "preferred-install": "dist",
-        "secure-http": false
+        "preferred-install": "dist"
     },
     "repositories": [
         {
             "type": "composer",
-            "url": "http://sapi.collabmed.net/repo/private/"
+            "url": "https://sapi.collabmed.net/repo/private/"
         }
     ]
 }
