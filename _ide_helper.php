@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.6 on 2016-09-11.
+ * Generated for Laravel 5.3.15 on 2016-10-05.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -169,15 +169,15 @@ if (! function_exists('array_get')) {
 
 if (! function_exists('array_has')) {
     /**
-     * Check if an item exists in an array using "dot" notation.
+     * Check if an item or items exist in an array using "dot" notation.
      *
      * @param  \ArrayAccess|array  $array
-     * @param  string  $key
+     * @param  string|array  $keys
      * @return bool
      */
-    function array_has($array, $key)
+    function array_has($array, $keys)
     {
-        return Arr::has($array, $key);
+        return Arr::has($array, $keys);
     }
 }
 
@@ -345,11 +345,15 @@ if (! function_exists('class_uses_recursive')) {
     /**
      * Returns all traits used by a class, its subclasses and trait of their traits.
      *
-     * @param  string  $class
+     * @param  object|string  $class
      * @return array
      */
     function class_uses_recursive($class)
     {
+        if (is_object($class)) {
+            $class = get_class($class);
+        }
+
         $results = [];
 
         foreach (array_merge([$class => $class], class_parents($class)) as $class) {
@@ -405,7 +409,7 @@ if (! function_exists('data_get')) {
 
         $key = is_array($key) ? $key : explode('.', $key);
 
-        while (($segment = array_shift($key)) !== null) {
+        while (! is_null($segment = array_shift($key))) {
             if ($segment === '*') {
                 if ($target instanceof Collection) {
                     $target = $target->all();
@@ -605,7 +609,7 @@ if (! function_exists('preg_replace_array')) {
      */
     function preg_replace_array($pattern, array $replacements, $subject)
     {
-        return preg_replace_callback($pattern, function ($match) use (&$replacements) {
+        return preg_replace_callback($pattern, function () use (&$replacements) {
             foreach ($replacements as $key => $value) {
                 return array_shift($replacements);
             }
@@ -1144,7 +1148,6 @@ if (! function_exists('with')) {
         /**
          * Get or check the current application environment.
          *
-         * @param mixed
          * @return string|bool 
          * @static 
          */
@@ -1834,6 +1837,19 @@ if (! function_exists('with')) {
         }
         
         /**
+         * Get a closure to resolve the given type from the container.
+         *
+         * @param string $abstract
+         * @param array $defaults
+         * @return \Closure 
+         * @static 
+         */
+        public static function factory($abstract, $defaults = array()){
+            //Method inherited from \Illuminate\Container\Container            
+            return \Illuminate\Foundation\Application::factory($abstract, $defaults);
+        }
+        
+        /**
          * Instantiate a concrete instance of the given type.
          *
          * @param string $concrete
@@ -1883,6 +1899,19 @@ if (! function_exists('with')) {
         public static function isShared($abstract){
             //Method inherited from \Illuminate\Container\Container            
             return \Illuminate\Foundation\Application::isShared($abstract);
+        }
+        
+        /**
+         * Get the alias for an abstract if available.
+         *
+         * @param string $abstract
+         * @return string 
+         * @throws \LogicException
+         * @static 
+         */
+        public static function getAlias($abstract){
+            //Method inherited from \Illuminate\Container\Container            
+            return \Illuminate\Foundation\Application::getAlias($abstract);
         }
         
         /**
@@ -2104,6 +2133,18 @@ if (! function_exists('with')) {
         public static function bootstrap(){
             //Method inherited from \Illuminate\Foundation\Console\Kernel            
             \Dervis\Console\Kernel::bootstrap();
+        }
+        
+        /**
+         * Set the Artisan application instance.
+         *
+         * @param \Illuminate\Console\Application $artisan
+         * @return void 
+         * @static 
+         */
+        public static function setArtisan($artisan){
+            //Method inherited from \Illuminate\Foundation\Console\Kernel            
+            \Dervis\Console\Kernel::setArtisan($artisan);
         }
         
     }
@@ -3396,7 +3437,6 @@ if (! function_exists('with')) {
         /**
          * Queue a cookie to send with the next response.
          *
-         * @param mixed
          * @return void 
          * @static 
          */
@@ -4535,7 +4575,7 @@ if (! function_exists('with')) {
          *
          * @param int $count
          * @param callable $callback
-         * @param string $alias
+         * @param string $column
          * @return bool 
          * @static 
          */
@@ -4634,11 +4674,12 @@ if (! function_exists('with')) {
          *
          * @param bool $value
          * @param \Closure $callback
+         * @param \Closure $default
          * @return $this 
          * @static 
          */
-        public static function when($value, $callback){
-            return \Illuminate\Database\Eloquent\Builder::when($value, $callback);
+        public static function when($value, $callback, $default = null){
+            return \Illuminate\Database\Eloquent\Builder::when($value, $callback, $default);
         }
         
         /**
@@ -4700,13 +4741,13 @@ if (! function_exists('with')) {
          * Add a relationship count / exists condition to the query with where clauses.
          *
          * @param string $relation
-         * @param \Closure $callback
+         * @param \Closure|null $callback
          * @param string $operator
          * @param int $count
          * @return \Illuminate\Database\Eloquent\Builder|static 
          * @static 
          */
-        public static function whereHas($relation, $callback, $operator = '>=', $count = 1){
+        public static function whereHas($relation, $callback = null, $operator = '>=', $count = 1){
             return \Illuminate\Database\Eloquent\Builder::whereHas($relation, $callback, $operator, $count);
         }
         
@@ -6437,6 +6478,17 @@ if (! function_exists('with')) {
         }
         
         /**
+         * Determine if the given path is readable.
+         *
+         * @param string $path
+         * @return bool 
+         * @static 
+         */
+        public static function isReadable($path){
+            return \Illuminate\Filesystem\Filesystem::isReadable($path);
+        }
+        
+        /**
          * Determine if the given path is writable.
          *
          * @param string $path
@@ -6834,6 +6886,19 @@ if (! function_exists('with')) {
          */
         public static function get($key, $replace = array(), $locale = null, $fallback = true){
             return \Illuminate\Translation\Translator::get($key, $replace, $locale, $fallback);
+        }
+        
+        /**
+         * Add translation lines to the given locale.
+         *
+         * @param array $lines
+         * @param string $locale
+         * @param string $namespace
+         * @return void 
+         * @static 
+         */
+        public static function addLines($lines, $locale, $namespace = '*'){
+            \Illuminate\Translation\Translator::addLines($lines, $locale, $namespace);
         }
         
         /**
@@ -7504,8 +7569,8 @@ if (! function_exists('with')) {
          * @return void 
          * @static 
          */
-        public static function sendNow($notifiables, $notification){
-            \Illuminate\Notifications\ChannelManager::sendNow($notifiables, $notification);
+        public static function sendNow($notifiables, $notification, $channels = null){
+            \Illuminate\Notifications\ChannelManager::sendNow($notifiables, $notification, $channels);
         }
         
         /**
@@ -7520,9 +7585,9 @@ if (! function_exists('with')) {
         }
         
         /**
-         * Get the default channel driver names.
+         * Get the default channel driver name.
          *
-         * @return array 
+         * @return string 
          * @static 
          */
         public static function getDefaultDriver(){
@@ -7530,9 +7595,9 @@ if (! function_exists('with')) {
         }
         
         /**
-         * Get the default channel driver names.
+         * Get the default channel driver name.
          *
-         * @return array 
+         * @return string 
          * @static 
          */
         public static function deliversVia(){
@@ -7540,14 +7605,14 @@ if (! function_exists('with')) {
         }
         
         /**
-         * Set the default channel driver names.
+         * Set the default channel driver name.
          *
-         * @param array|string $channels
+         * @param string $channel
          * @return void 
          * @static 
          */
-        public static function deliverVia($channels){
-            \Illuminate\Notifications\ChannelManager::deliverVia($channels);
+        public static function deliverVia($channel){
+            \Illuminate\Notifications\ChannelManager::deliverVia($channel);
         }
         
         /**
@@ -7790,7 +7855,7 @@ if (! function_exists('with')) {
          * @static 
          */
         public static function size($queue = null){
-            return \Illuminate\Queue\SyncQueue::size($queue);
+            return \Illuminate\Queue\DatabaseQueue::size($queue);
         }
         
         /**
@@ -7800,11 +7865,10 @@ if (! function_exists('with')) {
          * @param mixed $data
          * @param string $queue
          * @return mixed 
-         * @throws \Exception|\Throwable
          * @static 
          */
         public static function push($job, $data = '', $queue = null){
-            return \Illuminate\Queue\SyncQueue::push($job, $data, $queue);
+            return \Illuminate\Queue\DatabaseQueue::push($job, $data, $queue);
         }
         
         /**
@@ -7817,7 +7881,7 @@ if (! function_exists('with')) {
          * @static 
          */
         public static function pushRaw($payload, $queue = null, $options = array()){
-            return \Illuminate\Queue\SyncQueue::pushRaw($payload, $queue, $options);
+            return \Illuminate\Queue\DatabaseQueue::pushRaw($payload, $queue, $options);
         }
         
         /**
@@ -7827,11 +7891,37 @@ if (! function_exists('with')) {
          * @param string $job
          * @param mixed $data
          * @param string $queue
-         * @return mixed 
+         * @return void 
          * @static 
          */
         public static function later($delay, $job, $data = '', $queue = null){
-            return \Illuminate\Queue\SyncQueue::later($delay, $job, $data, $queue);
+            \Illuminate\Queue\DatabaseQueue::later($delay, $job, $data, $queue);
+        }
+        
+        /**
+         * Push an array of jobs onto the queue.
+         *
+         * @param array $jobs
+         * @param mixed $data
+         * @param string $queue
+         * @return mixed 
+         * @static 
+         */
+        public static function bulk($jobs, $data = '', $queue = null){
+            return \Illuminate\Queue\DatabaseQueue::bulk($jobs, $data, $queue);
+        }
+        
+        /**
+         * Release a reserved job back onto the queue.
+         *
+         * @param string $queue
+         * @param \StdClass $job
+         * @param int $delay
+         * @return mixed 
+         * @static 
+         */
+        public static function release($queue, $job, $delay){
+            return \Illuminate\Queue\DatabaseQueue::release($queue, $job, $delay);
         }
         
         /**
@@ -7842,7 +7932,29 @@ if (! function_exists('with')) {
          * @static 
          */
         public static function pop($queue = null){
-            return \Illuminate\Queue\SyncQueue::pop($queue);
+            return \Illuminate\Queue\DatabaseQueue::pop($queue);
+        }
+        
+        /**
+         * Delete a reserved job from the queue.
+         *
+         * @param string $queue
+         * @param string $id
+         * @return void 
+         * @static 
+         */
+        public static function deleteReserved($queue, $id){
+            \Illuminate\Queue\DatabaseQueue::deleteReserved($queue, $id);
+        }
+        
+        /**
+         * Get the underlying database instance.
+         *
+         * @return \Illuminate\Database\Connection 
+         * @static 
+         */
+        public static function getDatabase(){
+            return \Illuminate\Queue\DatabaseQueue::getDatabase();
         }
         
         /**
@@ -7856,7 +7968,7 @@ if (! function_exists('with')) {
          */
         public static function pushOn($queue, $job, $data = ''){
             //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\SyncQueue::pushOn($queue, $job, $data);
+            return \Illuminate\Queue\DatabaseQueue::pushOn($queue, $job, $data);
         }
         
         /**
@@ -7871,21 +7983,7 @@ if (! function_exists('with')) {
          */
         public static function laterOn($queue, $delay, $job, $data = ''){
             //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\SyncQueue::laterOn($queue, $delay, $job, $data);
-        }
-        
-        /**
-         * Push an array of jobs onto the queue.
-         *
-         * @param array $jobs
-         * @param mixed $data
-         * @param string $queue
-         * @return mixed 
-         * @static 
-         */
-        public static function bulk($jobs, $data = '', $queue = null){
-            //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\SyncQueue::bulk($jobs, $data, $queue);
+            return \Illuminate\Queue\DatabaseQueue::laterOn($queue, $delay, $job, $data);
         }
         
         /**
@@ -7897,7 +7995,7 @@ if (! function_exists('with')) {
          */
         public static function setContainer($container){
             //Method inherited from \Illuminate\Queue\Queue            
-            \Illuminate\Queue\SyncQueue::setContainer($container);
+            \Illuminate\Queue\DatabaseQueue::setContainer($container);
         }
         
     }
@@ -8060,6 +8158,61 @@ if (! function_exists('with')) {
     }
 
 
+    class Redis extends \Illuminate\Support\Facades\Redis{
+        
+        /**
+         * Get a specific Redis connection instance.
+         *
+         * @param string $name
+         * @return \Predis\ClientInterface|null 
+         * @static 
+         */
+        public static function connection($name = 'default'){
+            return \Illuminate\Redis\Database::connection($name);
+        }
+        
+        /**
+         * Run a command against the Redis database.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @return mixed 
+         * @static 
+         */
+        public static function command($method, $parameters = array()){
+            return \Illuminate\Redis\Database::command($method, $parameters);
+        }
+        
+        /**
+         * Subscribe to a set of given channels for messages.
+         *
+         * @param array|string $channels
+         * @param \Closure $callback
+         * @param string $connection
+         * @param string $method
+         * @return void 
+         * @static 
+         */
+        public static function subscribe($channels, $callback, $connection = null, $method = 'subscribe'){
+            \Illuminate\Redis\Database::subscribe($channels, $callback, $connection, $method);
+        }
+        
+        /**
+         * Subscribe to a set of given channels with wildcards.
+         *
+         * @param array|string $channels
+         * @param \Closure $callback
+         * @param string $connection
+         * @return void 
+         * @static 
+         */
+        public static function psubscribe($channels, $callback, $connection = null){
+            \Illuminate\Redis\Database::psubscribe($channels, $callback, $connection);
+        }
+        
+    }
+
+
     class Request extends \Illuminate\Support\Facades\Request{
         
         /**
@@ -8178,7 +8331,6 @@ if (! function_exists('with')) {
         /**
          * Determine if the current request URI matches a pattern.
          *
-         * @param mixed  string
          * @return bool 
          * @static 
          */
@@ -8189,7 +8341,6 @@ if (! function_exists('with')) {
         /**
          * Determine if the current request URL and query string matches a pattern.
          *
-         * @param mixed  string
          * @return bool 
          * @static 
          */
@@ -10397,7 +10548,6 @@ if (! function_exists('with')) {
         /**
          * Alias for the "currentRouteNamed" method.
          *
-         * @param mixed  string
          * @return bool 
          * @static 
          */
@@ -10429,7 +10579,6 @@ if (! function_exists('with')) {
         /**
          * Alias for the "currentRouteUses" method.
          *
-         * @param mixed  string
          * @return bool 
          * @static 
          */
@@ -11734,7 +11883,7 @@ if (! function_exists('with')) {
         }
         
         /**
-         * Generate a URL to an application asset.
+         * Generate the URL to an application asset.
          *
          * @param string $path
          * @param bool|null $secure
@@ -11746,7 +11895,7 @@ if (! function_exists('with')) {
         }
         
         /**
-         * Generate a URL to an asset from a custom root domain such as CDN, etc.
+         * Generate the URL to an asset from a custom root domain such as CDN, etc.
          *
          * @param string $root
          * @param string $path
@@ -11759,7 +11908,7 @@ if (! function_exists('with')) {
         }
         
         /**
-         * Generate a URL to a secure asset.
+         * Generate the URL to a secure asset.
          *
          * @param string $path
          * @return string 
@@ -12352,7 +12501,7 @@ if (! function_exists('with')) {
         /**
          * Add new loop to the stack.
          *
-         * @param array|\Countable $data
+         * @param \Countable|array $data
          * @return void 
          * @static 
          */
@@ -12832,11 +12981,12 @@ if (! function_exists('with')) {
          * Get a specific config data from a configuration file.
          *
          * @param $key
+         * @param null $default
          * @return mixed 
          * @static 
          */
-        public static function config($key){
-            return \Nwidart\Modules\Repository::config($key);
+        public static function config($key, $default = null){
+            return \Nwidart\Modules\Repository::config($key, $default);
         }
         
         /**
@@ -13068,10 +13218,21 @@ if (! function_exists('with')) {
          * Adds an exception to be profiled in the debug bar
          *
          * @param \Exception $e
+         * @deprecated in favor of addThrowable
          * @static 
          */
         public static function addException($e){
             return \Barryvdh\Debugbar\LaravelDebugbar::addException($e);
+        }
+        
+        /**
+         * Adds an exception to be profiled in the debug bar
+         *
+         * @param \Exception $e
+         * @static 
+         */
+        public static function addThrowable($e){
+            return \Barryvdh\Debugbar\LaravelDebugbar::addThrowable($e);
         }
         
         /**
@@ -14050,7 +14211,6 @@ if (! function_exists('with')) {
          * Flash an information message.
          *
          * @param string $message
-         * @return $this 
          * @static 
          */
         public static function info($message){
@@ -14095,12 +14255,11 @@ if (! function_exists('with')) {
          *
          * @param string $message
          * @param string $title
-         * @param string $level
          * @return $this 
          * @static 
          */
-        public static function overlay($message, $title = 'Notice', $level = 'info'){
-            return \Laracasts\Flash\FlashNotifier::overlay($message, $title, $level);
+        public static function overlay($message, $title = 'Notice'){
+            return \Laracasts\Flash\FlashNotifier::overlay($message, $title);
         }
         
         /**
@@ -14124,6 +14283,11 @@ if (! function_exists('with')) {
         public static function important(){
             return \Laracasts\Flash\FlashNotifier::important();
         }
+        
+    }
+
+
+    class Date extends \Jenssegers\Date\Date{
         
     }
 
@@ -14359,8 +14523,8 @@ if (! function_exists('with')) {
          * @return mixed 
          * @static 
          */
-        public static function get($name, $locale = null, $default = null){
-            return \Ignite\Settings\Library\Settings::get($name, $locale, $default);
+        public static function get($name, $default = null){
+            return \Ignite\Settings\Library\Settings::get($name, $default);
         }
         
         /**
@@ -15041,6 +15205,145 @@ if (! function_exists('with')) {
          */
         public static function setModel($model){
             return \Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::setModel($model);
+        }
+        
+    }
+
+
+    class Calendar extends \MaddHatter\LaravelFullcalendar\Facades\Calendar{
+        
+        /**
+         * Create an event DTO to add to a calendar
+         *
+         * @param string $title
+         * @param string $isAllDay
+         * @param string|\DateTime $start If string, must be valid datetime format: http://bit.ly/1z7QWbg
+         * @param string|\DateTime $end If string, must be valid datetime format: http://bit.ly/1z7QWbg
+         * @param string $id event Id
+         * @param array $options
+         * @return \MaddHatter\LaravelFullcalendar\SimpleEvent 
+         * @static 
+         */
+        public static function event($title, $isAllDay, $start, $end, $id = null, $options = array()){
+            return \MaddHatter\LaravelFullcalendar\Calendar::event($title, $isAllDay, $start, $end, $id, $options);
+        }
+        
+        /**
+         * Create the <div> the calendar will be rendered into
+         *
+         * @return string 
+         * @static 
+         */
+        public static function calendar(){
+            return \MaddHatter\LaravelFullcalendar\Calendar::calendar();
+        }
+        
+        /**
+         * Get the <script> block to render the calendar (as a View)
+         *
+         * @return \Illuminate\View\View 
+         * @static 
+         */
+        public static function script(){
+            return \MaddHatter\LaravelFullcalendar\Calendar::script();
+        }
+        
+        /**
+         * Customize the ID of the generated <div>
+         *
+         * @param string $id
+         * @return $this 
+         * @static 
+         */
+        public static function setId($id){
+            return \MaddHatter\LaravelFullcalendar\Calendar::setId($id);
+        }
+        
+        /**
+         * Get the ID of the generated <div>
+         * This value is randomized unless a custom value was set via setId
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getId(){
+            return \MaddHatter\LaravelFullcalendar\Calendar::getId();
+        }
+        
+        /**
+         * Add an event
+         *
+         * @param \Event $event
+         * @param array $customAttributes
+         * @return $this 
+         * @static 
+         */
+        public static function addEvent($event, $customAttributes = array()){
+            return \MaddHatter\LaravelFullcalendar\Calendar::addEvent($event, $customAttributes);
+        }
+        
+        /**
+         * Add multiple events
+         *
+         * @param array|\MaddHatter\LaravelFullcalendar\ArrayAccess $events
+         * @param array $customAttributes
+         * @return $this 
+         * @static 
+         */
+        public static function addEvents($events, $customAttributes = array()){
+            return \MaddHatter\LaravelFullcalendar\Calendar::addEvents($events, $customAttributes);
+        }
+        
+        /**
+         * Set fullcalendar options
+         *
+         * @param array $options
+         * @return $this 
+         * @static 
+         */
+        public static function setOptions($options){
+            return \MaddHatter\LaravelFullcalendar\Calendar::setOptions($options);
+        }
+        
+        /**
+         * Get the fullcalendar options (not including the events list)
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getOptions(){
+            return \MaddHatter\LaravelFullcalendar\Calendar::getOptions();
+        }
+        
+        /**
+         * Set fullcalendar callback options
+         *
+         * @param array $callbacks
+         * @return $this 
+         * @static 
+         */
+        public static function setCallbacks($callbacks){
+            return \MaddHatter\LaravelFullcalendar\Calendar::setCallbacks($callbacks);
+        }
+        
+        /**
+         * Get the callbacks currently defined
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getCallbacks(){
+            return \MaddHatter\LaravelFullcalendar\Calendar::getCallbacks();
+        }
+        
+        /**
+         * Get options+events JSON
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getOptionsJson(){
+            return \MaddHatter\LaravelFullcalendar\Calendar::getOptionsJson();
         }
         
     }

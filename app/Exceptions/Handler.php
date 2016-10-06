@@ -5,6 +5,7 @@ namespace Dervis\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 
 class Handler extends ExceptionHandler {
 
@@ -46,7 +47,7 @@ class Handler extends ExceptionHandler {
             flash()->warning("Opps! Seems you couldn't submit form for a longtime. Please try again");
             return back();
         }
-        if (config('app.debug') && class_exists('\Whoops\Run')) {
+        if (config('option.whoops') && class_exists('\Whoops\Run')) {
             return $this->renderExceptionWithWhoops($exception);
         }
         return parent::render($request, $exception);
