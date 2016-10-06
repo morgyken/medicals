@@ -13,7 +13,9 @@ return [
       | to have a conventional place to find your various credentials.
       |
      */
-
+    'telegram-bot-api' => [
+        'token' => env('TELEGRAM_BOT_TOKEN', '203962672:AAGYzxSMD6oXtoBbTYhGm4dqUWrrFE6FRIE')
+    ],
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
