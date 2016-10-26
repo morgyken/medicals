@@ -157,8 +157,7 @@ return [
         Dervis\Providers\EventServiceProvider::class,
         Dervis\Providers\RouteServiceProvider::class,
         Nwidart\Modules\LaravelModulesServiceProvider::class,
-        //log viewr
-        Arcanedev\LogViewer\LogViewerServiceProvider::class,
+       
     ],
     /*
       |--------------------------------------------------------------------------

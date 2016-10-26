@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
             $loader->alias('Debugbar', \Barryvdh\Debugbar\Facade::class);
             $this->app->register(\GrahamCampbell\Exceptions\ExceptionsServiceProvider::class);
+            $this->app->register(\Arcanedev\LogViewer\LogViewerServiceProvider::class);
         }
     }
 
