@@ -83,7 +83,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://sapi.collabmed.net/repo/private/"
+            "url": "https://sapi.collabmed.net"
         }
     ]
 }
