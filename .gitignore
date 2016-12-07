@@ -10,3 +10,6 @@ composer.lock
 /public/modules
 /public/themes
 /cookie.txt
+/public/vendor/
+/resources/views/modules/
+/resources/views/vendor/
