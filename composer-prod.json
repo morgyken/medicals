@@ -26,7 +26,7 @@
         "collabmed/finance-module": "~1.0",
         "collabmed/inventory-module": "~1.0",
         "collabmed/sms-module": "~1.0",
-        "collabmed/analytics-module": "dev-master"
+        "collabmed/analytics-module": "~1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
