@@ -25,7 +25,7 @@
         "laracasts/flash": "^2.0",
         "phpoffice/phpword": "^0.13.0",
         "spatie/laravel-google-calendar": "^1.0",
-        "reportico/laravel-reportico": "~5.2"
+        "khill/lavacharts": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.1",

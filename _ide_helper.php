@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.15 on 2016-10-20.
+ * Generated for Laravel 5.3.30 on 2017-02-07.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -3498,7 +3498,7 @@ if (! function_exists('with')) {
         /**
          * Encrypt the given value.
          *
-         * @param string $value
+         * @param mixed $value
          * @return string 
          * @throws \Illuminate\Contracts\Encryption\EncryptException
          * @static 
@@ -3510,7 +3510,7 @@ if (! function_exists('with')) {
         /**
          * Decrypt the given value.
          *
-         * @param string $payload
+         * @param mixed $payload
          * @return string 
          * @throws \Illuminate\Contracts\Encryption\DecryptException
          * @static 
@@ -3652,6 +3652,18 @@ if (! function_exists('with')) {
         }
         
         /**
+         * Bind values to their parameters in the given statement.
+         *
+         * @param \PDOStatement $statement
+         * @param array $bindings
+         * @return void 
+         * @static 
+         */
+        public static function bindValues($statement, $bindings){
+            \Illuminate\Database\MySqlConnection::bindValues($statement, $bindings);
+        }
+        
+        /**
          * Set the query grammar to the default implementation.
          *
          * @return void 
@@ -3724,12 +3736,13 @@ if (! function_exists('with')) {
          *
          * @param string $query
          * @param array $bindings
+         * @param bool $useReadPdo
          * @return mixed 
          * @static 
          */
-        public static function selectOne($query, $bindings = array()){
+        public static function selectOne($query, $bindings = array(), $useReadPdo = true){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::selectOne($query, $bindings);
+            return \Illuminate\Database\MySqlConnection::selectOne($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -3760,26 +3773,17 @@ if (! function_exists('with')) {
         }
         
         /**
-         * 
+         * Run a select statement against the database and returns a generator.
          *
+         * @param string $query
+         * @param array $bindings
+         * @param bool $useReadPdo
+         * @return \Generator 
          * @static 
          */
         public static function cursor($query, $bindings = array(), $useReadPdo = true){
             //Method inherited from \Illuminate\Database\Connection            
             return \Illuminate\Database\MySqlConnection::cursor($query, $bindings, $useReadPdo);
-        }
-        
-        /**
-         * Bind values to their parameters in the given statement.
-         *
-         * @param \PDOStatement $statement
-         * @param array $bindings
-         * @return void 
-         * @static 
-         */
-        public static function bindValues($statement, $bindings){
-            //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::bindValues($statement, $bindings);
         }
         
         /**
@@ -4041,7 +4045,6 @@ if (! function_exists('with')) {
          *
          * @param \PDO|null $pdo
          * @return $this 
-         * @throws \RuntimeException
          * @static 
          */
         public static function setPdo($pdo){
@@ -4685,7 +4688,7 @@ if (! function_exists('with')) {
         /**
          * Add a basic where clause to the query.
          *
-         * @param string $column
+         * @param string|\Closure $column
          * @param string $operator
          * @param mixed $value
          * @param string $boolean
@@ -4699,7 +4702,7 @@ if (! function_exists('with')) {
         /**
          * Add an "or where" clause to the query.
          *
-         * @param string $column
+         * @param string|\Closure $column
          * @param string $operator
          * @param mixed $value
          * @return \Illuminate\Database\Eloquent\Builder|static 
@@ -6332,6 +6335,18 @@ if (! function_exists('with')) {
         }
         
         /**
+         * Get or set UNIX mode of a file or directory.
+         *
+         * @param string $path
+         * @param int $mode
+         * @return mixed 
+         * @static 
+         */
+        public static function chmod($path, $mode = null){
+            return \Illuminate\Filesystem\Filesystem::chmod($path, $mode);
+        }
+        
+        /**
          * Delete the file at a given path.
          *
          * @param string|array $paths
@@ -7336,6 +7351,18 @@ if (! function_exists('with')) {
         }
         
         /**
+         * Set the global reply-to address and name.
+         *
+         * @param string $address
+         * @param string|null $name
+         * @return void 
+         * @static 
+         */
+        public static function alwaysReplyTo($address, $name = null){
+            \Illuminate\Mail\Mailer::alwaysReplyTo($address, $name);
+        }
+        
+        /**
          * Set the global to address and name.
          *
          * @param string $address
@@ -8019,11 +8046,12 @@ if (! function_exists('with')) {
          *
          * @param int $status
          * @param array $headers
+         * @param string $fallback
          * @return \Illuminate\Http\RedirectResponse 
          * @static 
          */
-        public static function back($status = 302, $headers = array()){
-            return \Illuminate\Routing\Redirector::back($status, $headers);
+        public static function back($status = 302, $headers = array(), $fallback = false){
+            return \Illuminate\Routing\Redirector::back($status, $headers, $fallback);
         }
         
         /**
@@ -8793,7 +8821,7 @@ if (! function_exists('with')) {
          * @param array $cookies The COOKIE parameters
          * @param array $files The FILES parameters
          * @param array $server The SERVER parameters
-         * @return \Request The duplicated request
+         * @return static 
          * @static 
          */
         public static function duplicate($query = null, $request = null, $attributes = null, $cookies = null, $files = null, $server = null){
@@ -8963,7 +8991,7 @@ if (! function_exists('with')) {
         /**
          * Creates a new request with values from PHP's super globals.
          *
-         * @return \Request A new request
+         * @return static 
          * @static 
          */
         public static function createFromGlobals(){
@@ -8984,7 +9012,7 @@ if (! function_exists('with')) {
          * @param array $files The request files ($_FILES)
          * @param array $server The server parameters ($_SERVER)
          * @param string $content The raw body data
-         * @return \Request A Request instance
+         * @return static 
          * @static 
          */
         public static function create($uri, $method = 'GET', $parameters = array(), $cookies = array(), $files = array(), $server = array(), $content = null){
@@ -9714,12 +9742,26 @@ if (! function_exists('with')) {
         /**
          * Checks whether the method is safe or not.
          *
+         * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
+         * @param bool $andCacheable Adds the additional condition that the method should be cacheable. True by default.
          * @return bool 
          * @static 
          */
         public static function isMethodSafe(){
             //Method inherited from \Symfony\Component\HttpFoundation\Request            
             return \Illuminate\Http\Request::isMethodSafe();
+        }
+        
+        /**
+         * Checks whether the method is cacheable or not.
+         *
+         * @see https://tools.ietf.org/html/rfc7231#section-4.2.3
+         * @return bool 
+         * @static 
+         */
+        public static function isMethodCacheable(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isMethodCacheable();
         }
         
         /**
@@ -9819,7 +9861,7 @@ if (! function_exists('with')) {
          * It works if your JavaScript library sets an X-Requested-With HTTP header.
          * It is known to work with common JavaScript frameworks:
          *
-         * @link http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
+         * @see http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
          * @return bool true if the request is an XMLHttpRequest, false otherwise
          * @static 
          */
@@ -10180,6 +10222,17 @@ if (! function_exists('with')) {
          */
         public static function resourceParameters($parameters = array()){
             \Illuminate\Routing\Router::resourceParameters($parameters);
+        }
+        
+        /**
+         * Get or set the verbs used in the resource URIs.
+         *
+         * @param array $verbs
+         * @return array|null 
+         * @static 
+         */
+        public static function resourceVerbs($verbs = array()){
+            return \Illuminate\Routing\Router::resourceVerbs($verbs);
         }
         
         /**
@@ -10732,12 +10785,12 @@ if (! function_exists('with')) {
          *
          * @param string $table
          * @param \Closure $callback
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @return void 
          * @static 
          */
         public static function table($table, $callback){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Illuminate\Database\Schema\MySqlBuilder::table($table, $callback);
+            \Illuminate\Database\Schema\MySqlBuilder::table($table, $callback);
         }
         
         /**
@@ -10745,36 +10798,36 @@ if (! function_exists('with')) {
          *
          * @param string $table
          * @param \Closure $callback
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @return void 
          * @static 
          */
         public static function create($table, $callback){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Illuminate\Database\Schema\MySqlBuilder::create($table, $callback);
+            \Illuminate\Database\Schema\MySqlBuilder::create($table, $callback);
         }
         
         /**
          * Drop a table from the schema.
          *
          * @param string $table
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @return void 
          * @static 
          */
         public static function drop($table){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Illuminate\Database\Schema\MySqlBuilder::drop($table);
+            \Illuminate\Database\Schema\MySqlBuilder::drop($table);
         }
         
         /**
          * Drop a table from the schema if it exists.
          *
          * @param string $table
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @return void 
          * @static 
          */
         public static function dropIfExists($table){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Illuminate\Database\Schema\MySqlBuilder::dropIfExists($table);
+            \Illuminate\Database\Schema\MySqlBuilder::dropIfExists($table);
         }
         
         /**
@@ -10782,12 +10835,12 @@ if (! function_exists('with')) {
          *
          * @param string $from
          * @param string $to
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @return void 
          * @static 
          */
         public static function rename($from, $to){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Illuminate\Database\Schema\MySqlBuilder::rename($from, $to);
+            \Illuminate\Database\Schema\MySqlBuilder::rename($from, $to);
         }
         
         /**
@@ -11141,6 +11194,18 @@ if (! function_exists('with')) {
         }
         
         /**
+         * Get an item from the session, or store the default value.
+         *
+         * @param string $key
+         * @param \Closure $callback
+         * @return mixed 
+         * @static 
+         */
+        public static function remember($key, $callback){
+            return \Illuminate\Session\Store::remember($key, $callback);
+        }
+        
+        /**
          * Push a value onto a session array.
          *
          * @param string $key
@@ -11189,8 +11254,7 @@ if (! function_exists('with')) {
         }
         
         /**
-         * Flash a key / value pair to the session
-         * for immediate use.
+         * Flash a key / value pair to the session for immediate use.
          *
          * @param string $key
          * @param mixed $value
@@ -12923,6 +12987,29 @@ if (! function_exists('with')) {
         }
         
         /**
+         * Find a specific module by its alias.
+         *
+         * @param $alias
+         * @return mixed|void 
+         * @static 
+         */
+        public static function findByAlias($alias){
+            return \Nwidart\Modules\Repository::findByAlias($alias);
+        }
+        
+        /**
+         * Find all modules that are required by a module. If the module cannot be found, throw an exception.
+         *
+         * @param $name
+         * @return array 
+         * @throws ModuleNotFoundException
+         * @static 
+         */
+        public static function findRequirements($name){
+            return \Nwidart\Modules\Repository::findRequirements($name);
+        }
+        
+        /**
          * Alternative for "find" method.
          *
          * @param $name
@@ -13159,6 +13246,29 @@ if (! function_exists('with')) {
          */
         public static function setStubPath($stubPath){
             return \Nwidart\Modules\Repository::setStubPath($stubPath);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param callable $macro
+         * @return void 
+         * @static 
+         */
+        public static function macro($name, $macro){
+            \Nwidart\Modules\Repository::macro($name, $macro);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasMacro($name){
+            return \Nwidart\Modules\Repository::hasMacro($name);
         }
         
     }
@@ -14211,6 +14321,7 @@ if (! function_exists('with')) {
          * Flash an information message.
          *
          * @param string $message
+         * @return $this 
          * @static 
          */
         public static function info($message){
@@ -14255,11 +14366,12 @@ if (! function_exists('with')) {
          *
          * @param string $message
          * @param string $title
+         * @param string $level
          * @return $this 
          * @static 
          */
-        public static function overlay($message, $title = 'Notice'){
-            return \Laracasts\Flash\FlashNotifier::overlay($message, $title);
+        public static function overlay($message, $title = 'Notice', $level = 'info'){
+            return \Laracasts\Flash\FlashNotifier::overlay($message, $title, $level);
         }
         
         /**
@@ -14288,6 +14400,135 @@ if (! function_exists('with')) {
 
 
     class Date extends \Jenssegers\Date\Date{
+        
+    }
+
+
+    class PDF extends \Barryvdh\DomPDF\Facade{
+        
+        /**
+         * Get the DomPDF instance
+         *
+         * @return \Barryvdh\DomPDF\Dompdf 
+         * @static 
+         */
+        public static function getDomPDF(){
+            return \Barryvdh\DomPDF\PDF::getDomPDF();
+        }
+        
+        /**
+         * Set the paper size (default A4)
+         *
+         * @param string $paper
+         * @param string $orientation
+         * @return $this 
+         * @static 
+         */
+        public static function setPaper($paper, $orientation = 'portrait'){
+            return \Barryvdh\DomPDF\PDF::setPaper($paper, $orientation);
+        }
+        
+        /**
+         * Show or hide warnings
+         *
+         * @param bool $warnings
+         * @return $this 
+         * @static 
+         */
+        public static function setWarnings($warnings){
+            return \Barryvdh\DomPDF\PDF::setWarnings($warnings);
+        }
+        
+        /**
+         * Load a HTML string
+         *
+         * @param string $string
+         * @param string $encoding Not used yet
+         * @return static 
+         * @static 
+         */
+        public static function loadHTML($string, $encoding = null){
+            return \Barryvdh\DomPDF\PDF::loadHTML($string, $encoding);
+        }
+        
+        /**
+         * Load a HTML file
+         *
+         * @param string $file
+         * @return static 
+         * @static 
+         */
+        public static function loadFile($file){
+            return \Barryvdh\DomPDF\PDF::loadFile($file);
+        }
+        
+        /**
+         * Load a View and convert to HTML
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @param string $encoding Not used yet
+         * @return static 
+         * @static 
+         */
+        public static function loadView($view, $data = array(), $mergeData = array(), $encoding = null){
+            return \Barryvdh\DomPDF\PDF::loadView($view, $data, $mergeData, $encoding);
+        }
+        
+        /**
+         * Set/Change an option in DomPdf
+         *
+         * @param array $options
+         * @return static 
+         * @static 
+         */
+        public static function setOptions($options){
+            return \Barryvdh\DomPDF\PDF::setOptions($options);
+        }
+        
+        /**
+         * Output the PDF as a string.
+         *
+         * @return string The rendered PDF as string
+         * @static 
+         */
+        public static function output(){
+            return \Barryvdh\DomPDF\PDF::output();
+        }
+        
+        /**
+         * Save the PDF to a file
+         *
+         * @param $filename
+         * @return static 
+         * @static 
+         */
+        public static function save($filename){
+            return \Barryvdh\DomPDF\PDF::save($filename);
+        }
+        
+        /**
+         * Make the PDF downloadable by the user
+         *
+         * @param string $filename
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */
+        public static function download($filename = 'document.pdf'){
+            return \Barryvdh\DomPDF\PDF::download($filename);
+        }
+        
+        /**
+         * Return a response with the PDF to show in the browser
+         *
+         * @param string $filename
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */
+        public static function stream($filename = 'document.pdf'){
+            return \Barryvdh\DomPDF\PDF::stream($filename);
+        }
         
     }
 
@@ -14834,6 +15075,17 @@ if (! function_exists('with')) {
         }
         
         /**
+         * Removes the given checkpoints.
+         *
+         * @param array $checkpoints
+         * @return void 
+         * @static 
+         */
+        public static function removeCheckpoints($checkpoints = array()){
+            \Cartalyst\Sentinel\Sentinel::removeCheckpoints($checkpoints);
+        }
+        
+        /**
          * Returns the currently logged in user, lazily checking for it.
          *
          * @param bool $check
@@ -15349,5 +15601,143 @@ if (! function_exists('with')) {
     }
 
 
+    class Lava extends \Khill\Lavacharts\Laravel\LavachartsFacade{
+        
+        /**
+         * Create a new DataTable
+         * 
+         * If the additional DataTablePlus package is available, then one will
+         * be created, otherwise a standard DataTable is returned.
+         *
+         * @since 3.0.0
+         * @param string $timezone
+         * @return \Khill\Lavacharts\DataTables\DataTable 
+         * @static 
+         */
+        public static function DataTable($timezone = null){
+            return \Khill\Lavacharts\Lavacharts::DataTable($timezone);
+        }
+        
+        /**
+         * Create a new Dashboard
+         *
+         * @since 3.0.0
+         * @param string $label
+         * @return \Khill\Lavacharts\DataTables\DataTable 
+         * @static 
+         */
+        public static function Dashboard($label){
+            return \Khill\Lavacharts\Lavacharts::Dashboard($label);
+        }
+        
+        /**
+         * Create a new ControlWrapper from a Filter
+         *
+         * @since 3.0.0
+         * @uses \Khill\Lavacharts\Values\ElementId
+         * @param \Khill\Lavacharts\Dashboards\Filters\Filter $filter Filter to wrap
+         * @param string $elementId HTML element ID to output the control.
+         * @return \Khill\Lavacharts\Dashboards\ControlWrapper 
+         * @static 
+         */
+        public static function ControlWrapper($filter, $elementId){
+            return \Khill\Lavacharts\Lavacharts::ControlWrapper($filter, $elementId);
+        }
+        
+        /**
+         * Create a new ChartWrapper from a Chart
+         *
+         * @since 3.0.0
+         * @uses \Khill\Lavacharts\Values\ElementId
+         * @param \Khill\Lavacharts\Charts\Chart $chart Chart to wrap
+         * @param string $elementId HTML element ID to output the control.
+         * @return \Khill\Lavacharts\Dashboards\ChartWrapper 
+         * @static 
+         */
+        public static function ChartWrapper($chart, $elementId){
+            return \Khill\Lavacharts\Lavacharts::ChartWrapper($chart, $elementId);
+        }
+        
+        /**
+         * Renders Charts or Dashboards into the page
+         * 
+         * Given a type, label, and HTML element id, this will output
+         * all of the necessary javascript to generate the chart or dashboard.
+         *
+         * @access public
+         * @since 2.0.0
+         * @uses \Khill\Lavacharts\Values\Label
+         * @uses \Khill\Lavacharts\Values\ElementId
+         * @param string $type Type of object to render.
+         * @param string $label Label of the object to render.
+         * @param string $elementId HTML element id to render into.
+         * @param mixed $divDimensions Set true for div creation, or pass an array with height & width
+         * @return string 
+         * @static 
+         */
+        public static function render($type, $label, $elementId, $divDimensions = false){
+            return \Khill\Lavacharts\Lavacharts::render($type, $label, $elementId, $divDimensions);
+        }
+        
+        /**
+         * Outputs the link to the Google JSAPI
+         *
+         * @access public
+         * @since 2.3.0
+         * @return string Google Chart API and lava.js script blocks
+         * @static 
+         */
+        public static function jsapi(){
+            return \Khill\Lavacharts\Lavacharts::jsapi();
+        }
+        
+        /**
+         * Checks to see if the given chart or dashboard exists in the volcano storage.
+         *
+         * @access public
+         * @since 2.4.2
+         * @uses \Khill\Lavacharts\Values\Label
+         * @param string $type Type of object to check.
+         * @param string $label Label of the object to check.
+         * @return boolean 
+         * @static 
+         */
+        public static function exists($type, $label){
+            return \Khill\Lavacharts\Lavacharts::exists($type, $label);
+        }
+        
+        /**
+         * Fetches an existing Chart or Dashboard from the volcano storage.
+         *
+         * @access public
+         * @since 3.0.0
+         * @uses \Khill\Lavacharts\Values\Label
+         * @param string $type Type of Chart or Dashboard.
+         * @param string $label Label of the Chart or Dashboard.
+         * @return mixed 
+         * @static 
+         */
+        public static function fetch($type, $label){
+            return \Khill\Lavacharts\Lavacharts::fetch($type, $label);
+        }
+        
+        /**
+         * Stores a existing Chart or Dashboard into the volcano storage.
+         *
+         * @access public
+         * @since 3.0.0
+         * @param \Khill\Lavacharts\Chart|\Khill\Lavacharts\Dashboard $lavaObj Chart or Dashboard.
+         * @return boolean 
+         * @static 
+         */
+        public static function store($lavaObj){
+            return \Khill\Lavacharts\Lavacharts::store($lavaObj);
+        }
+        
+    }
+
+
 }
+
+
 
