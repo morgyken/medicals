@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-02-07.
+    * Generated on 2017-06-15.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -93,11 +93,6 @@ namespace PHPSTORM_META {
             'sentinel' instanceof \Cartalyst\Sentinel\Sentinel,
             'Ignite\Reception\Repositories\ReceptionRepository' instanceof \Ignite\Reception\Library\ReceptionFunctions,
             'laravel-fullcalendar' instanceof \MaddHatter\LaravelFullcalendar\Calendar,
-            'Ignite\Finance\Repositories\EvaluationRepository' instanceof \Ignite\Finance\Library\EvaluationLibrary,
-            'Ignite\Finance\Repositories\FinanceRepository' instanceof \Ignite\Finance\Library\FinanceLibrary,
-            'Ignite\Finance\Repositories\InventoryRepository' instanceof \Ignite\Finance\Library\InventoryLibrary,
-            'getReporticoEngine' instanceof \Reportico\Reportico\reportico,
-            'lavacharts' instanceof \Khill\Lavacharts\Lavacharts,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
             'Ignite\Core\Library\ThemeManager' instanceof \Ignite\Core\Library\StylistThemeManager,
@@ -111,7 +106,6 @@ namespace PHPSTORM_META {
             'Ignite\Evaluation\Repositories\EvaluationRepository' instanceof \Ignite\Evaluation\Library\EvaluationFunctions,
             'Ignite\Evaluation\Repositories\BikaRepository' instanceof \Ignite\Evaluation\Library\BikaFunctions,
             'Ignite\Inventory\Repositories\InventoryRepository' instanceof \Ignite\Inventory\Library\InventoryFunctions,
-            'Ignite\Analytics\Repositories\PatientRepository' instanceof \Ignite\Analytics\Library\PatientManagementFunctions,
             'Ignite\Sms\Repositories\MessageRepository' instanceof \Ignite\Sms\Library\MessageFunctions,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\PusherBroadcaster,
@@ -277,11 +271,6 @@ namespace PHPSTORM_META {
             'sentinel' instanceof \Cartalyst\Sentinel\Sentinel,
             'Ignite\Reception\Repositories\ReceptionRepository' instanceof \Ignite\Reception\Library\ReceptionFunctions,
             'laravel-fullcalendar' instanceof \MaddHatter\LaravelFullcalendar\Calendar,
-            'Ignite\Finance\Repositories\EvaluationRepository' instanceof \Ignite\Finance\Library\EvaluationLibrary,
-            'Ignite\Finance\Repositories\FinanceRepository' instanceof \Ignite\Finance\Library\FinanceLibrary,
-            'Ignite\Finance\Repositories\InventoryRepository' instanceof \Ignite\Finance\Library\InventoryLibrary,
-            'getReporticoEngine' instanceof \Reportico\Reportico\reportico,
-            'lavacharts' instanceof \Khill\Lavacharts\Lavacharts,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
             'Ignite\Core\Library\ThemeManager' instanceof \Ignite\Core\Library\StylistThemeManager,
@@ -295,7 +284,6 @@ namespace PHPSTORM_META {
             'Ignite\Evaluation\Repositories\EvaluationRepository' instanceof \Ignite\Evaluation\Library\EvaluationFunctions,
             'Ignite\Evaluation\Repositories\BikaRepository' instanceof \Ignite\Evaluation\Library\BikaFunctions,
             'Ignite\Inventory\Repositories\InventoryRepository' instanceof \Ignite\Inventory\Library\InventoryFunctions,
-            'Ignite\Analytics\Repositories\PatientRepository' instanceof \Ignite\Analytics\Library\PatientManagementFunctions,
             'Ignite\Sms\Repositories\MessageRepository' instanceof \Ignite\Sms\Library\MessageFunctions,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\PusherBroadcaster,
@@ -461,11 +449,6 @@ namespace PHPSTORM_META {
             'sentinel' instanceof \Cartalyst\Sentinel\Sentinel,
             'Ignite\Reception\Repositories\ReceptionRepository' instanceof \Ignite\Reception\Library\ReceptionFunctions,
             'laravel-fullcalendar' instanceof \MaddHatter\LaravelFullcalendar\Calendar,
-            'Ignite\Finance\Repositories\EvaluationRepository' instanceof \Ignite\Finance\Library\EvaluationLibrary,
-            'Ignite\Finance\Repositories\FinanceRepository' instanceof \Ignite\Finance\Library\FinanceLibrary,
-            'Ignite\Finance\Repositories\InventoryRepository' instanceof \Ignite\Finance\Library\InventoryLibrary,
-            'getReporticoEngine' instanceof \Reportico\Reportico\reportico,
-            'lavacharts' instanceof \Khill\Lavacharts\Lavacharts,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
             'Ignite\Core\Library\ThemeManager' instanceof \Ignite\Core\Library\StylistThemeManager,
@@ -479,7 +462,6 @@ namespace PHPSTORM_META {
             'Ignite\Evaluation\Repositories\EvaluationRepository' instanceof \Ignite\Evaluation\Library\EvaluationFunctions,
             'Ignite\Evaluation\Repositories\BikaRepository' instanceof \Ignite\Evaluation\Library\BikaFunctions,
             'Ignite\Inventory\Repositories\InventoryRepository' instanceof \Ignite\Inventory\Library\InventoryFunctions,
-            'Ignite\Analytics\Repositories\PatientRepository' instanceof \Ignite\Analytics\Library\PatientManagementFunctions,
             'Ignite\Sms\Repositories\MessageRepository' instanceof \Ignite\Sms\Library\MessageFunctions,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\PusherBroadcaster,
@@ -645,11 +627,6 @@ namespace PHPSTORM_META {
             'sentinel' instanceof \Cartalyst\Sentinel\Sentinel,
             'Ignite\Reception\Repositories\ReceptionRepository' instanceof \Ignite\Reception\Library\ReceptionFunctions,
             'laravel-fullcalendar' instanceof \MaddHatter\LaravelFullcalendar\Calendar,
-            'Ignite\Finance\Repositories\EvaluationRepository' instanceof \Ignite\Finance\Library\EvaluationLibrary,
-            'Ignite\Finance\Repositories\FinanceRepository' instanceof \Ignite\Finance\Library\FinanceLibrary,
-            'Ignite\Finance\Repositories\InventoryRepository' instanceof \Ignite\Finance\Library\InventoryLibrary,
-            'getReporticoEngine' instanceof \Reportico\Reportico\reportico,
-            'lavacharts' instanceof \Khill\Lavacharts\Lavacharts,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
             'Ignite\Core\Library\ThemeManager' instanceof \Ignite\Core\Library\StylistThemeManager,
@@ -663,7 +640,6 @@ namespace PHPSTORM_META {
             'Ignite\Evaluation\Repositories\EvaluationRepository' instanceof \Ignite\Evaluation\Library\EvaluationFunctions,
             'Ignite\Evaluation\Repositories\BikaRepository' instanceof \Ignite\Evaluation\Library\BikaFunctions,
             'Ignite\Inventory\Repositories\InventoryRepository' instanceof \Ignite\Inventory\Library\InventoryFunctions,
-            'Ignite\Analytics\Repositories\PatientRepository' instanceof \Ignite\Analytics\Library\PatientManagementFunctions,
             'Ignite\Sms\Repositories\MessageRepository' instanceof \Ignite\Sms\Library\MessageFunctions,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\PusherBroadcaster,
