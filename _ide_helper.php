@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.31 on 2017-06-15.
+ * Generated for Laravel 5.3.31 on 2017-06-17.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -14125,6 +14125,25 @@ namespace MaddHatter\LaravelFullcalendar\Facades {
     }         
 }
     
+namespace Ixudra\Curl\Facades {
+
+    class Curl {
+        
+        /**
+         * 
+         *
+         * @param $url string   The URL to which the request is to be sent
+         * @return \Ixudra\Curl\Builder 
+         * @static 
+         */
+        public static function to($url)
+        {
+            return \Ixudra\Curl\CurlService::to($url);
+        }
+        
+    }         
+}
+    
     
 namespace {
 
@@ -16942,6 +16961,8 @@ if (! function_exists('with')) {
     class Reminder extends \Cartalyst\Sentinel\Laravel\Facades\Reminder {}
     
     class Calendar extends \MaddHatter\LaravelFullcalendar\Facades\Calendar {}
+    
+    class Curl extends \Ixudra\Curl\Facades\Curl {}
     
 }
 
