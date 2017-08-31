@@ -29,7 +29,8 @@
     "phpoffice/phpword": "^0.13.0",
     "spatie/laravel-google-calendar": "^1.0",
     "khill/lavacharts": "^3.0",
-    "ixudra/curl": "^6.10"
+    "ixudra/curl": "^6.10",
+    "hoa/math": "~1.0"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.1",
