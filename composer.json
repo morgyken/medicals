@@ -1,77 +1,78 @@
 {
-  "name": "collabmed/platform",
-  "description": "The Collabmed Platform.",
-  "keywords": [
-    "collabmed",
-    "platform"
-  ],
-  "license": "MIT",
-  "type": "project",
-  "require": {
-    "php": ">=5.6",
-    "laravel/framework": "5.3.*",
-    "nwidart/laravel-modules": "^1.13",
-    "maatwebsite/laravel-sidebar": "^2.1",
-    "laravelcollective/html": "5.3.*",
-    "jenssegers/date": "^3.2",
-    "league/flysystem-sftp": "^1.0",
-    "intervention/image": "^2.3",
-    "cartalyst/sentinel": "2.0.*",
-    "barryvdh/laravel-dompdf": "^0.7.0",
-    "maatwebsite/excel": "~2.1.0",
-    "maddhatter/laravel-fullcalendar": "^1.2",
-    "maknz/slack": "^1.7",
-    "predis/predis": "^1.1",
-    "vinkla/pusher": "^2.4",
-    "floatingpoint/stylist": "^0.4.0",
-    "spatie/laravel-backup": "^4.1",
-    "laracasts/flash": "^2.0",
-    "phpoffice/phpword": "^0.13.0",
-    "spatie/laravel-google-calendar": "^1.0",
-    "khill/lavacharts": "^3.0",
-    "ixudra/curl": "^6.10"
-  },
-  "require-dev": {
-    "barryvdh/laravel-ide-helper": "^2.1",
-    "barryvdh/laravel-debugbar": "^2.2",
-    "doctrine/dbal": "^2.5",
-    "fzaninotto/faker": "~1.4",
-    "mockery/mockery": "0.9.*",
-    "graham-campbell/exceptions": "^9.0",
-    "filp/whoops": "^2.1",
-    "phpunit/phpunit": "^5.6"
-  },
-  "autoload": {
-    "classmap": [
-      "database"
+    "name": "collabmed/platform",
+    "description": "The Collabmed Platform.",
+    "keywords": [
+        "collabmed",
+        "platform"
     ],
-    "psr-4": {
-      "Dervis\\": "app/",
-      "Ignite\\": "Modules/"
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.6",
+        "laravel/framework": "5.3.*",
+        "nwidart/laravel-modules": "^1.13",
+        "maatwebsite/laravel-sidebar": "^2.1",
+        "laravelcollective/html": "5.3.*",
+        "jenssegers/date": "^3.2",
+        "league/flysystem-sftp": "^1.0",
+        "intervention/image": "^2.3",
+        "cartalyst/sentinel": "2.0.*",
+        "barryvdh/laravel-dompdf": "^0.7.0",
+        "maatwebsite/excel": "~2.1.0",
+        "maddhatter/laravel-fullcalendar": "^1.2",
+        "maknz/slack": "^1.7",
+        "predis/predis": "^1.1",
+        "vinkla/pusher": "^2.4",
+        "floatingpoint/stylist": "^0.4.0",
+        "spatie/laravel-backup": "^4.1",
+        "laracasts/flash": "^2.0",
+        "phpoffice/phpword": "^0.13.0",
+        "spatie/laravel-google-calendar": "^1.0",
+        "khill/lavacharts": "^3.0",
+        "ixudra/curl": "^6.10",
+        "barryvdh/laravel-cors": "^0.9.3"
+    },
+    "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.1",
+        "barryvdh/laravel-debugbar": "^2.2",
+        "doctrine/dbal": "^2.5",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "graham-campbell/exceptions": "^9.0",
+        "filp/whoops": "^2.1",
+        "phpunit/phpunit": "^5.6"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "Dervis\\": "app/",
+            "Ignite\\": "Modules/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "php artisan key:generate"
+        ],
+        "post-install-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "php artisan optimize"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan optimize"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
     }
-  },
-  "autoload-dev": {
-    "classmap": [
-      "tests/TestCase.php"
-    ]
-  },
-  "scripts": {
-    "post-root-package-install": [
-      "php -r \"copy('.env.example', '.env');\""
-    ],
-    "post-create-project-cmd": [
-      "php artisan key:generate"
-    ],
-    "post-install-cmd": [
-      "Illuminate\\Foundation\\ComposerScripts::postInstall",
-      "php artisan optimize"
-    ],
-    "post-update-cmd": [
-      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-      "php artisan optimize"
-    ]
-  },
-  "config": {
-    "preferred-install": "dist"
-  }
 }

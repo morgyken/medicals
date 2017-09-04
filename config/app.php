@@ -157,6 +157,8 @@ return [
         Dervis\Providers\EventServiceProvider::class,
         Dervis\Providers\RouteServiceProvider::class,
         Nwidart\Modules\LaravelModulesServiceProvider::class,
+        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
        
     ],
     /*
@@ -204,5 +206,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         // nicholus
         'Module' => Nwidart\Modules\Facades\Module::class,
+        'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class
     ],
 ];

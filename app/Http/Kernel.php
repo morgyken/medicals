@@ -34,6 +34,7 @@ class Kernel extends HttpKernel {
         ShareErrorsFromSession::class,
         ResolveSidebars::class,
         VerifyCsrfToken::class,
+        \Barryvdh\Cors\HandleCors::class,
        // SubstituteBindings::class,
     ];
 
@@ -54,6 +55,7 @@ class Kernel extends HttpKernel {
         'api' => [
             'throttle:60,1',
             'bindings',
+            \Barryvdh\Cors\HandleCors::class,
         ],
     ];
 
