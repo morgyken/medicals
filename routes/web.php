@@ -14,3 +14,4 @@
 Route::get('/', function () {
     return redirect()->route('system.dashboard');
 });
+

@@ -6,14 +6,14 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('APP_URL'),
+        'name' => env('DB_DATABASE') . '-backup',
         'source' => [
             'files' => [
                 /*
                  * The list of directories and files that will be included in the backup.
                  */
                 'include' => [
-                    base_path(),
+                   // base_path(),
                 ],
                 /*
                  * These directories and files will be excluded from the backup.
@@ -80,20 +80,20 @@ return [
      * UnHealthyBackupWasFound event will be fired.
      */
     'monitorBackups' => [
-            [
+        [
             'name' => env('APP_URL'),
             'disks' => ['local'],
             'newestBackupsShouldNotBeOlderThanDays' => 1,
             'storageUsedMayNotBeHigherThanMegabytes' => 5000,
         ],
-    /*
-      [
-      'name' => 'name of the second app',
-      'disks' => ['local', 's3'],
-      'newestBackupsShouldNotBeOlderThanDays' => 1,
-      'storageUsedMayNotBeHigherThanMegabytes' => 5000,
-      ],
-     */
+        /*
+          [
+          'name' => 'name of the second app',
+          'disks' => ['local', 's3'],
+          'newestBackupsShouldNotBeOlderThanDays' => 1,
+          'storageUsedMayNotBeHigherThanMegabytes' => 5000,
+          ],
+         */
     ],
     'cleanup' => [
         /*
