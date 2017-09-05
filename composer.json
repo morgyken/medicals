@@ -1,16 +1,9 @@
 {
-<<<<<<< HEAD
     "name": "collabmed/platform",
     "description": "The Collabmed Platform.",
     "keywords": [
         "collabmed",
         "platform"
-=======
-  "name": "collabmed/platform",
-  "description": "The Collabmed Platform.",
-  "keywords": [
-    "collabmed",
-    "platform"
   ],
   "license": "MIT",
   "type": "project",
@@ -52,7 +45,6 @@
   "autoload": {
     "classmap": [
       "database"
->>>>>>> 6367e0924be5f36a6ff6ab871cffbf1d7b94130e
     ],
     "license": "MIT",
     "type": "project",
