@@ -34,7 +34,7 @@ class Kernel extends HttpKernel {
         ShareErrorsFromSession::class,
         ResolveSidebars::class,
         VerifyCsrfToken::class,
-        \Barryvdh\Cors\HandleCors::class,
+        \Barryvdh\Cors\HandleCors::class
        // SubstituteBindings::class,
     ];
 
