@@ -14,4 +14,5 @@
 Route::get('/', function () {
     return redirect()->route('system.dashboard');
 });
+Route::get('log-viewer', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 

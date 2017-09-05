@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.31 on 2017-08-31.
+ * Generated for Laravel 5.3.31 on 2017-09-05.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11569,6 +11569,236 @@ namespace Nwidart\Modules\Facades {
  
 }
 
+namespace Khill\Lavacharts\Laravel { 
+
+    class LavachartsFacade {
+        
+        /**
+         * Create a new DataTable using the DataFactory
+         * 
+         * If the additional DataTablePlus package is available, then one will
+         * be created, otherwise a standard DataTable is returned.
+         *
+         * @since 3.0.3
+         * @uses \Khill\Lavacharts\DataTables\DataFactory
+         * @param mixed $args
+         * @return \Khill\Lavacharts\DataTables\DataTable 
+         * @static 
+         */ 
+        public static function DataTable($args = null)
+        {
+            return \Khill\Lavacharts\Lavacharts::DataTable($args);
+        }
+        
+        /**
+         * Create a new Dashboard
+         *
+         * @since 3.0.0
+         * @param string $label
+         * @param \Khill\Lavacharts\DataTables\DataTable $dataTable
+         * @return \Khill\Lavacharts\Dashboards\Dashboard 
+         * @static 
+         */ 
+        public static function Dashboard($label, $dataTable)
+        {
+            return \Khill\Lavacharts\Lavacharts::Dashboard($label, $dataTable);
+        }
+        
+        /**
+         * Create a new ControlWrapper from a Filter
+         *
+         * @since 3.0.0
+         * @uses \Khill\Lavacharts\Values\ElementId
+         * @param \Khill\Lavacharts\Dashboards\Filters\Filter $filter Filter to wrap
+         * @param string $elementId HTML element ID to output the control.
+         * @return \Khill\Lavacharts\Dashboards\Wrappers\ControlWrapper 
+         * @static 
+         */ 
+        public static function ControlWrapper($filter, $elementId)
+        {
+            return \Khill\Lavacharts\Lavacharts::ControlWrapper($filter, $elementId);
+        }
+        
+        /**
+         * Create a new ChartWrapper from a Chart
+         *
+         * @since 3.0.0
+         * @uses \Khill\Lavacharts\Values\ElementId
+         * @param \Khill\Lavacharts\Charts\Chart $chart Chart to wrap
+         * @param string $elementId HTML element ID to output the control.
+         * @return \Khill\Lavacharts\Dashboards\Wrappers\ChartWrapper 
+         * @static 
+         */ 
+        public static function ChartWrapper($chart, $elementId)
+        {
+            return \Khill\Lavacharts\Lavacharts::ChartWrapper($chart, $elementId);
+        }
+        
+        /**
+         * Locales are used to customize text for a country or language.
+         * 
+         * This will affect the formatting of values such as currencies, dates, and numbers.
+         * 
+         * By default, Lavacharts is loaded with the "en" locale. You can override this default
+         * by explicitly specifying a locale when creating the DataTable.
+         *
+         * @since 3.1.0
+         * @param string $locale
+         * @return $this 
+         * @throws \Khill\Lavacharts\Exceptions\InvalidStringValue
+         * @static 
+         */ 
+        public static function setLocale($locale = 'en')
+        {
+            return \Khill\Lavacharts\Lavacharts::setLocale($locale);
+        }
+        
+        /**
+         * Returns the current locale used in the DataTable
+         *
+         * @since 3.1.0
+         * @return string 
+         * @static 
+         */ 
+        public static function getLocale()
+        {
+            return \Khill\Lavacharts\Lavacharts::getLocale();
+        }
+        
+        /**
+         * Outputs the lava.js module for manual placement.
+         * 
+         * Will be depreciating jsapi in the future
+         *
+         * @since 3.0.3
+         * @return string Google Chart API and lava.js script blocks
+         * @static 
+         */ 
+        public static function lavajs()
+        {
+            return \Khill\Lavacharts\Lavacharts::lavajs();
+        }
+        
+        /**
+         * Outputs the link to the Google JSAPI
+         *
+         * @since 2.3.0
+         * @deprecated 3.0.3
+         * @return string Google Chart API and lava.js script blocks
+         * @static 
+         */ 
+        public static function jsapi()
+        {
+            return \Khill\Lavacharts\Lavacharts::jsapi();
+        }
+        
+        /**
+         * Checks to see if the given chart or dashboard exists in the volcano storage.
+         *
+         * @since 2.4.2
+         * @uses \Khill\Lavacharts\Values\Label
+         * @param string $type Type of object to isNonEmpty.
+         * @param string $label Label of the object to isNonEmpty.
+         * @return boolean 
+         * @static 
+         */ 
+        public static function exists($type, $label)
+        {
+            return \Khill\Lavacharts\Lavacharts::exists($type, $label);
+        }
+        
+        /**
+         * Fetches an existing Chart or Dashboard from the volcano storage.
+         *
+         * @since 3.0.0
+         * @uses \Khill\Lavacharts\Values\Label
+         * @param string $type Type of Chart or Dashboard.
+         * @param string $label Label of the Chart or Dashboard.
+         * @return \Khill\Lavacharts\Support\Contracts\RenderableInterface 
+         * @throws \Khill\Lavacharts\Exceptions\InvalidLavaObject
+         * @static 
+         */ 
+        public static function fetch($type, $label)
+        {
+            return \Khill\Lavacharts\Lavacharts::fetch($type, $label);
+        }
+        
+        /**
+         * Stores a existing Chart or Dashboard into the volcano storage.
+         *
+         * @since 3.0.0
+         * @param \Khill\Lavacharts\Support\Contracts\RenderableInterface $renderable A Chart or Dashboard.
+         * @return \Khill\Lavacharts\Support\Contracts\RenderableInterface 
+         * @static 
+         */ 
+        public static function store($renderable)
+        {
+            return \Khill\Lavacharts\Lavacharts::store($renderable);
+        }
+        
+        /**
+         * Renders Charts or Dashboards into the page
+         * 
+         * Given a type, label, and HTML element id, this will output
+         * all of the necessary javascript to generate the chart or dashboard.
+         * 
+         * As of version 3.1, the elementId parameter is optional, but only
+         * if the elementId was set explicitly to the Renderable.
+         *
+         * @since 2.0.0
+         * @uses \Khill\Lavacharts\Values\Label
+         * @uses \Khill\Lavacharts\Values\ElementId
+         * @uses \Khill\Lavacharts\Support\Buffer
+         * @param string $type Type of object to render.
+         * @param string $label Label of the object to render.
+         * @param mixed $elementId HTML element id to render into.
+         * @param mixed $div Set true for div creation, or pass an array with height & width
+         * @return string 
+         * @static 
+         */ 
+        public static function render($type, $label, $elementId = null, $div = false)
+        {
+            return \Khill\Lavacharts\Lavacharts::render($type, $label, $elementId, $div);
+        }
+        
+        /**
+         * Renders all charts and dashboards that have been defined
+         *
+         * @since 3.1.0
+         * @return string 
+         * @static 
+         */ 
+        public static function renderAll()
+        {
+            return \Khill\Lavacharts\Lavacharts::renderAll();
+        }
+        
+        /**
+         * Retrieves the Options object from the class.
+         *
+         * @return \Khill\Lavacharts\Options 
+         * @static 
+         */ 
+        public static function getOptions()
+        {
+            return \Khill\Lavacharts\Lavacharts::getOptions();
+        }
+        
+        /**
+         * Sets the Options object for the class.
+         *
+         * @param array|\Khill\Lavacharts\Options $options
+         * @static 
+         */ 
+        public static function setOptions($options)
+        {
+            return \Khill\Lavacharts\Lavacharts::setOptions($options);
+        }
+         
+    }
+ 
+}
+
 namespace Barryvdh\Debugbar { 
 
     class Facade {
@@ -16057,6 +16287,8 @@ namespace  {
     class View extends \Illuminate\Support\Facades\View {}
 
     class Module extends \Nwidart\Modules\Facades\Module {}
+
+    class Lava extends \Khill\Lavacharts\Laravel\LavachartsFacade {}
 
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
 
