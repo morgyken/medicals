@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-09-07.
+    * Generated on 2017-09-14.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -102,6 +102,7 @@ namespace PHPSTORM_META {
         'Ignite\Finance\Repositories\FinanceRepository' => \Ignite\Finance\Library\FinanceLibrary::class,
         'Ignite\Finance\Repositories\InventoryRepository' => \Ignite\Finance\Library\InventoryLibrary::class,
         'Ignite\Sms\Repositories\MessageRepository' => \Ignite\Sms\Library\MessageFunctions::class,
+        'module.sms.kernel' => \Ignite\Sms\Console\Kernel::class,
         'ConsoleTVs\Charts\Builder' => \ConsoleTVs\Charts\Builder::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
         'translator' => \Illuminate\Translation\Translator::class,
@@ -290,6 +291,7 @@ namespace PHPSTORM_META {
         'Ignite\Finance\Repositories\FinanceRepository' => \Ignite\Finance\Library\FinanceLibrary::class,
         'Ignite\Finance\Repositories\InventoryRepository' => \Ignite\Finance\Library\InventoryLibrary::class,
         'Ignite\Sms\Repositories\MessageRepository' => \Ignite\Sms\Library\MessageFunctions::class,
+        'module.sms.kernel' => \Ignite\Sms\Console\Kernel::class,
         'ConsoleTVs\Charts\Builder' => \ConsoleTVs\Charts\Builder::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
         'translator' => \Illuminate\Translation\Translator::class,
@@ -478,6 +480,7 @@ namespace PHPSTORM_META {
         'Ignite\Finance\Repositories\FinanceRepository' => \Ignite\Finance\Library\FinanceLibrary::class,
         'Ignite\Finance\Repositories\InventoryRepository' => \Ignite\Finance\Library\InventoryLibrary::class,
         'Ignite\Sms\Repositories\MessageRepository' => \Ignite\Sms\Library\MessageFunctions::class,
+        'module.sms.kernel' => \Ignite\Sms\Console\Kernel::class,
         'ConsoleTVs\Charts\Builder' => \ConsoleTVs\Charts\Builder::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
         'translator' => \Illuminate\Translation\Translator::class,
@@ -666,6 +669,7 @@ namespace PHPSTORM_META {
         'Ignite\Finance\Repositories\FinanceRepository' => \Ignite\Finance\Library\FinanceLibrary::class,
         'Ignite\Finance\Repositories\InventoryRepository' => \Ignite\Finance\Library\InventoryLibrary::class,
         'Ignite\Sms\Repositories\MessageRepository' => \Ignite\Sms\Library\MessageFunctions::class,
+        'module.sms.kernel' => \Ignite\Sms\Console\Kernel::class,
         'ConsoleTVs\Charts\Builder' => \ConsoleTVs\Charts\Builder::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
         'translator' => \Illuminate\Translation\Translator::class,
@@ -854,6 +858,7 @@ namespace PHPSTORM_META {
         'Ignite\Finance\Repositories\FinanceRepository' => \Ignite\Finance\Library\FinanceLibrary::class,
         'Ignite\Finance\Repositories\InventoryRepository' => \Ignite\Finance\Library\InventoryLibrary::class,
         'Ignite\Sms\Repositories\MessageRepository' => \Ignite\Sms\Library\MessageFunctions::class,
+        'module.sms.kernel' => \Ignite\Sms\Console\Kernel::class,
         'ConsoleTVs\Charts\Builder' => \ConsoleTVs\Charts\Builder::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
         'translator' => \Illuminate\Translation\Translator::class,
@@ -1042,6 +1047,7 @@ namespace PHPSTORM_META {
         'Ignite\Finance\Repositories\FinanceRepository' => \Ignite\Finance\Library\FinanceLibrary::class,
         'Ignite\Finance\Repositories\InventoryRepository' => \Ignite\Finance\Library\InventoryLibrary::class,
         'Ignite\Sms\Repositories\MessageRepository' => \Ignite\Sms\Library\MessageFunctions::class,
+        'module.sms.kernel' => \Ignite\Sms\Console\Kernel::class,
         'ConsoleTVs\Charts\Builder' => \ConsoleTVs\Charts\Builder::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
         'translator' => \Illuminate\Translation\Translator::class,
@@ -1230,6 +1236,7 @@ namespace PHPSTORM_META {
         'Ignite\Finance\Repositories\FinanceRepository' => \Ignite\Finance\Library\FinanceLibrary::class,
         'Ignite\Finance\Repositories\InventoryRepository' => \Ignite\Finance\Library\InventoryLibrary::class,
         'Ignite\Sms\Repositories\MessageRepository' => \Ignite\Sms\Library\MessageFunctions::class,
+        'module.sms.kernel' => \Ignite\Sms\Console\Kernel::class,
         'ConsoleTVs\Charts\Builder' => \ConsoleTVs\Charts\Builder::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
         'translator' => \Illuminate\Translation\Translator::class,

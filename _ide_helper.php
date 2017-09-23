@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.31 on 2017-09-05.
+ * Generated for Laravel 5.3.31 on 2017-09-08.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -14366,20 +14366,152 @@ namespace MaddHatter\LaravelFullcalendar\Facades {
  
 }
 
-namespace Ixudra\Curl\Facades { 
+namespace ConsoleTVs\Charts\Facades { 
 
-    class Curl {
+    class Charts {
         
         /**
-         * 
+         * Return a new chart instance.
          *
-         * @param $url string   The URL to which the request is to be sent
-         * @return \Ixudra\Curl\Builder 
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\Chart 
          * @static 
          */ 
-        public static function to($url)
+        public static function create($type = null, $library = null)
         {
-            return \Ixudra\Curl\CurlService::to($url);
+            return \ConsoleTVs\Charts\Builder::create($type, $library);
+        }
+        
+        /**
+         * Return a new realtime chart instance.
+         *
+         * @param string $url
+         * @param int $interval
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\Realtime 
+         * @static 
+         */ 
+        public static function realtime($url, $interval, $type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::realtime($url, $interval, $type, $library);
+        }
+        
+        /**
+         * Return a new database chart instance.
+         *
+         * @param \Illuminate\Support\Collection $data
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\Database 
+         * @static 
+         */ 
+        public static function database($data, $type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::database($data, $type, $library);
+        }
+        
+        /**
+         * Return a new math chart instance.
+         *
+         * @param string $function
+         * @param array $interval
+         * @param int $amplitude
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\Math 
+         * @static 
+         */ 
+        public static function math($function, $interval, $amplitude, $type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::math($function, $interval, $amplitude, $type, $library);
+        }
+        
+        /**
+         * Return a new multi chart instance.
+         *
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\Multi 
+         * @static 
+         */ 
+        public static function multi($type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::multi($type, $library);
+        }
+        
+        /**
+         * Return a new multi database chart instance.
+         *
+         * @param string $type
+         * @param string $library
+         * @return \ConsoleTVs\Charts\MultiDatabase 
+         * @static 
+         */ 
+        public static function multiDatabase($type = null, $library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::multiDatabase($type, $library);
+        }
+        
+        /**
+         * Return all the libraries available.
+         *
+         * @param string $type
+         * @return array 
+         * @static 
+         */ 
+        public static function libraries($type = null)
+        {
+            return \ConsoleTVs\Charts\Builder::libraries($type);
+        }
+        
+        /**
+         * Return all the types available.
+         *
+         * @param string $library
+         * @return array 
+         * @static 
+         */ 
+        public static function types($library = null)
+        {
+            return \ConsoleTVs\Charts\Builder::types($library);
+        }
+        
+        /**
+         * Return the library styles.
+         *
+         * @param array $libraries
+         * @return string 
+         * @static 
+         */ 
+        public static function styles($libraries = array())
+        {
+            return \ConsoleTVs\Charts\Builder::styles($libraries);
+        }
+        
+        /**
+         * Return the library scripts.
+         *
+         * @param array $libraries
+         * @return string 
+         * @static 
+         */ 
+        public static function scripts($libraries = array())
+        {
+            return \ConsoleTVs\Charts\Builder::scripts($libraries);
+        }
+        
+        /**
+         * Return the library styles.
+         *
+         * @param array $libraries
+         * @return string 
+         * @static 
+         */ 
+        public static function assets($libraries = array())
+        {
+            return \ConsoleTVs\Charts\Builder::assets($libraries);
         }
          
     }
@@ -16314,7 +16446,7 @@ namespace  {
 
     class Calendar extends \MaddHatter\LaravelFullcalendar\Facades\Calendar {}
 
-    class Curl extends \Ixudra\Curl\Facades\Curl {}
+    class Charts extends \ConsoleTVs\Charts\Facades\Charts {}
  
 }
 

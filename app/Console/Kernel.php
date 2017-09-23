@@ -24,7 +24,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('system:sync')->everyFiveMinutes(); //->at('01:00');
         // $schedule->command('inspire')
         //          ->hourly();
     }
