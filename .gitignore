@@ -13,3 +13,5 @@ composer.lock
 /public/vendor/
 /resources/views/modules/
 /resources/views/vendor/
+.phpstorm.meta.php
+_ide_helper.php
