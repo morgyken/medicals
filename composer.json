@@ -29,7 +29,7 @@
     "phpoffice/phpword": "^0.13.0",
     "spatie/laravel-google-calendar": "^1.0",
     "khill/lavacharts": "^3.0",
-    "ixudra/curl": "^6.10",
+    "ixudra/curl": "^6.12",
     "hoa/math": "~1.0",
     "barryvdh/laravel-cors": "^0.9.3",
     "rap2hpoutre/laravel-log-viewer": "^0.10.4",
