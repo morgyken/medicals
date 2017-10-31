@@ -33,7 +33,7 @@
     "hoa/math": "~1.0",
     "barryvdh/laravel-cors": "^0.9.3",
     "rap2hpoutre/laravel-log-viewer": "^0.10.4",
-    "consoletvs/charts": "5.*"
+    "consoletvs/charts": "5.*",
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.1",
