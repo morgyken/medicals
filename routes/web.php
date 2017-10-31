@@ -16,7 +16,3 @@ Route::get('/', function () {
 });
 Route::get('log-viewer', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-
-/** Will be removed later and placed in evaluation */
-
-
