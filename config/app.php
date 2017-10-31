@@ -160,8 +160,6 @@ return [
         Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-
        
     ],
     /*
@@ -209,7 +207,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         // nicholus
         'Module' => Nwidart\Modules\Facades\Module::class,
-        'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class
     ],
 ];
