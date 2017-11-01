@@ -22,7 +22,6 @@
     "maddhatter/laravel-fullcalendar": "^1.2",
     "maknz/slack": "^1.7",
     "predis/predis": "^1.1",
-    "vinkla/pusher": "^2.4",
     "floatingpoint/stylist": "^0.4.0",
     "spatie/laravel-backup": "^4.1",
     "laracasts/flash": "^2.0",
@@ -33,7 +32,8 @@
     "hoa/math": "~1.0",
     "barryvdh/laravel-cors": "^0.9.3",
     "rap2hpoutre/laravel-log-viewer": "^0.10.4",
-    "consoletvs/charts": "5.*"
+    "consoletvs/charts": "5.*",
+    "spatie/laravel-responsecache": "~1.1.7"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.1",
