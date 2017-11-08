@@ -5,7 +5,7 @@
     "collabmed",
     "platform"
   ],
-  "license": "MIT",
+  "license": "DBAD",
   "type": "project",
   "require": {
     "php": ">=7.0",
