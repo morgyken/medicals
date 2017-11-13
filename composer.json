@@ -5,7 +5,7 @@
     "collabmed",
     "platform"
   ],
-  "license": "MIT",
+  "license": "DBAD",
   "type": "project",
   "require": {
     "php": ">=7.0",
@@ -33,7 +33,8 @@
     "barryvdh/laravel-cors": "^0.9.3",
     "rap2hpoutre/laravel-log-viewer": "^0.10.4",
     "consoletvs/charts": "5.*",
-    "pusher/pusher-php-server": "^3.0"
+    "pusher/pusher-php-server": "^3.0",
+    "spatie/laravel-responsecache": "~1.1.7"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.1",

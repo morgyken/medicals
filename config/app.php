@@ -14,6 +14,14 @@ return [
 
     'name' => 'Collabmed Platform',
     /*
+    |--------------------------------------------------------------------------
+    | Application cache
+    |--------------------------------------------------------------------------
+    | Set this to true to use the cache decorators, this will greatly improve
+    | the application speed and performance
+    */
+    'cache' => env('APP_CACHE', false),
+    /*
       |--------------------------------------------------------------------------
       | Application Environment
       |--------------------------------------------------------------------------
@@ -24,6 +32,7 @@ return [
       |
      */
     'env' => env('APP_ENV', 'production'),
+
     /*
       |--------------------------------------------------------------------------
       | Application Debug Mode

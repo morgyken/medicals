@@ -12,7 +12,7 @@ return [
       |
      */
 
-    'enabled' => false,
+    'enabled' => env('APP_ENV', 'production') === 'local',
     /*
       |--------------------------------------------------------------------------
       | Storage settings
@@ -45,7 +45,7 @@ return [
       | jQuery is set to not conflict with existing jQuery scripts.
       |
      */
-    'include_vendors' => true,
+    'include_vendors' => false,
     /*
       |--------------------------------------------------------------------------
       | Capture Ajax Requests
@@ -55,7 +55,7 @@ return [
       | you can use this option to disable sending the data through the headers.
       |
      */
-    'capture_ajax' => true,
+    'capture_ajax' => false,
     /*
       |--------------------------------------------------------------------------
       | Clockwork integration
@@ -106,17 +106,17 @@ return [
      */
     'options' => [
         'auth' => [
-            'show_name' => false, // Also show the users name/email in the debugbar
+            'show_name' => true, // Also show the users name/email in the debugbar
         ],
         'db' => [
             'with_params' => true, // Render SQL with the parameters substituted
-            'timeline' => false, // Add the queries to the timeline
-            'backtrace' => false, // EXPERIMENTAL: Use a backtrace to find the origin of the query in your files.
+            'timeline' => true, // Add the queries to the timeline
+            'backtrace' => true, // EXPERIMENTAL: Use a backtrace to find the origin of the query in your files.
             'explain' => [                 // EXPERIMENTAL: Show EXPLAIN output on queries
                 'enabled' => false,
                 'types' => ['SELECT'], // ['SELECT', 'INSERT', 'UPDATE', 'DELETE']; for MySQL 5.6.3+
             ],
-            'hints' => false, // Show hints for common mistakes
+            'hints' => true, // Show hints for common mistakes
         ],
         'mail' => [
             'full_log' => false
@@ -152,5 +152,5 @@ return [
       | from trying to overcome bugs like this: http://trac.nginx.org/nginx/ticket/97
       |
      */
-    'route_prefix' => '_debugbar',
+    'route_prefix' => '_sapi',
 ];

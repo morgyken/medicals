@@ -17,3 +17,4 @@ composer.lock
 /resources/views/vendor/
 .phpstorm.meta.php
 _ide_helper.php
+package-lock.json
