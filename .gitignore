@@ -11,6 +11,8 @@ composer.lock
 /public/themes
 /cookie.txt
 /public/vendor/
+/public/evaluation
+/public/logos
 /resources/views/modules/
 /resources/views/vendor/
 .phpstorm.meta.php

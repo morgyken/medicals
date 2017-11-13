@@ -160,7 +160,6 @@ return [
         Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-       
     ],
     /*
       |--------------------------------------------------------------------------
