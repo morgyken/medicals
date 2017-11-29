@@ -34,7 +34,8 @@
     "rap2hpoutre/laravel-log-viewer": "^0.10.4",
     "consoletvs/charts": "5.*",
     "spatie/laravel-responsecache": "~1.1.7",
-    "wikimedia/composer-merge-plugin": "^1.4"
+    "wikimedia/composer-merge-plugin": "^1.4",
+    "pusher/pusher-php-server": "^3.0"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.1",
