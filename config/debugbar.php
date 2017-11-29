@@ -45,7 +45,8 @@ return [
       | jQuery is set to not conflict with existing jQuery scripts.
       |
      */
-    'include_vendors' => false,
+    'include_vendors' => true,
+    'include_fluent' => true,
     /*
       |--------------------------------------------------------------------------
       | Capture Ajax Requests
@@ -86,14 +87,14 @@ return [
         'route' => true, // Current route information
         'laravel' => true, // Laravel version and environment
         'events' => false, // All events fired
-        'default_request' => true, // Regular or special Symfony request logger
+        'default_request' => false, // Regular or special Symfony request logger
         'symfony_request' => true, // Only one can be enabled..
         'mail' => true, // Catch mail messages
-        'logs' => true, // Add the latest log messages
+        'logs' => false, // Add the latest log messages
         'files' => false, // Show the included files
-        'config' => true, // Display config settings
+        'config' => false, // Display config settings
         'auth' => true, // Display Laravel authentication status
-        'gate' => true, // Display Laravel Gate checks
+        'gate' => false, // Display Laravel Gate checks
         'session' => true, // Display session data
     ],
     /*
