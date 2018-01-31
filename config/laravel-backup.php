@@ -55,12 +55,12 @@ return [
      */
     'notifications' => [
         'notifications' => [
-            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\BackupWasSuccessful::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class => ['slack'],
+            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['slack'],
+            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class => ['slack'],
+            \Spatie\Backup\Notifications\Notifications\BackupWasSuccessful::class => ['slack'],
+            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class => ['slack'],
+            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class => ['slack'],
         ],
         /*
          * Here you can specify the notifiable to which the notifications should be sent. The default
@@ -71,7 +71,7 @@ return [
             'to' => 'no-reply@collabmed.net',
         ],
         'slack' => [
-            'webhook_url' => '',
+            'webhook_url' => 'https://hooks.slack.com/services/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',
         ],
     ],
     /*
