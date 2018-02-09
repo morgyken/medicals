@@ -16,3 +16,4 @@ composer.lock
 /resources/views/modules/
 /resources/views/vendor/
 package-lock.json
+sync.bat
