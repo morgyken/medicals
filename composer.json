@@ -35,7 +35,8 @@
     "spatie/laravel-responsecache": "~1.1.7",
     "wikimedia/composer-merge-plugin": "^1.4",
     "pusher/pusher-php-server": "^3.0",
-    "backup-manager/laravel": "^1.2"
+    "backup-manager/laravel": "^1.2",
+    "owen-it/laravel-auditing": "^6.0"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.1",
